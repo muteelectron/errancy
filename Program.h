@@ -8,7 +8,6 @@ class Program : public ProgramState
 public:
 
     Program();
-    ~Program();
 
     int start();
 };

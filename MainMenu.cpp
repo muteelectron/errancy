@@ -12,7 +12,7 @@ MainMenu::~MainMenu()
 }
 
 
-int MainMenu::start()
+int MainMenu::run()
 {
     
 }

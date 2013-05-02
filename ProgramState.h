@@ -5,7 +5,7 @@ class ProgramState
 {
 public:
 
-    virtual int start() = 0;
+    virtual int run() = 0;
 };
 
 #endif

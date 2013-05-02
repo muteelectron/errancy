@@ -6,13 +6,7 @@ Program::Program()
 }
 
 
-Program::~Program()
-{
-
-}
-
-
-int Program::start()
+int Program::run()
 {
 
 }

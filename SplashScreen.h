@@ -10,7 +10,7 @@ public:
     SplashScreen();
     ~SplashScreen();
 
-    int start();
+    int run();
 
 private:
 

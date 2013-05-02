@@ -11,7 +11,7 @@ SplashScreen::~SplashScreen()
 }
 
 
-int SplashScreen::start()
+int SplashScreen::run()
 {
     
 }
