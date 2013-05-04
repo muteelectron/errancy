@@ -12,7 +12,7 @@ MainMenu::~MainMenu()
 }
 
 
-int MainMenu::run()
+bool MainMenu::run()
 {
-    
+    return true;
 }

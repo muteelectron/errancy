@@ -1,11 +1,13 @@
 #ifndef PROGRAMSTATE_H
 #define PROGRAMSTATE_H
 
+#include "Log.h"
+
 class ProgramState
 {
 public:
 
-    virtual int run() = 0;
+    virtual bool run() = 0;
 };
 
 #endif

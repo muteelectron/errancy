@@ -1,22 +1,23 @@
 #include "Program.h"
 
 
-int Program::run()
+bool Program::run()
 {
-    if(init() != 0)
+    if(!init())
     {
-        // ERROR
-        return -1;
+        return false;
     }
 }
 
 
 int Program::init()
 {
+    Log::init();
+
     if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
     {
-        // ERROR
-        return -1;
+        Log::write("");
+        return false;
     }
 
     int width;
@@ -24,9 +25,9 @@ int Program::init()
 
     if( ( Surf_Display = SDL_SetVideoMode( width, height, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_FULLSCREEN ) ) == NULL )
     {
-        // ERROR
-        return -2;
+        Log::write("");
+        return false;
     }
 
-    return 0;
+    return true;
 }

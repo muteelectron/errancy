@@ -11,7 +11,7 @@ SplashScreen::~SplashScreen()
 }
 
 
-int SplashScreen::run()
+bool SplashScreen::run()
 {
-    
+    return true;
 }

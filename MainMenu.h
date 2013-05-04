@@ -10,7 +10,7 @@ public:
     MainMenu();
     ~MainMenu();
 
-    int run();
+    bool run();
 };
 
 #endif

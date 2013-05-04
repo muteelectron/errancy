@@ -8,7 +8,7 @@ class Program : public ProgramState
 {
 public:
 
-    int start();
+    bool run();
 
 private:
 
