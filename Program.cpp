@@ -7,6 +7,9 @@ bool Program::run()
     {
         return false;
     }
+
+    splashcreen = new SplashScreen;
+    return splashcreen->run();
 }
 
 

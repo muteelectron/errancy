@@ -1,17 +1,8 @@
 #include "SplashScreen.h"
 
-SplashScreen::SplashScreen()
-{
-
-}
-
-SplashScreen::~SplashScreen()
-{
-
-}
-
 
 bool SplashScreen::run()
 {
-    return true;
+    mainmenu = new MainMenu;
+    return mainmenu->run();
 }

@@ -3,6 +3,7 @@
 
 #include "SDL.h"
 #include "ProgramState.h"
+#include "SplashScreen.h"
 
 class Program : public ProgramState
 {
@@ -13,6 +14,10 @@ public:
 private:
 
     int init();
+
+    SDL_Surface* Surf_Display;
+
+    SplashScreen* splashscreen;
 };
 
 #endif
