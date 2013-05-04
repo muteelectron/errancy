@@ -3,5 +3,5 @@
 int main()
 {
     Program program;
-    return Program run();
+    return program.run();
 }

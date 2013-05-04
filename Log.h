@@ -9,12 +9,11 @@ class Log
 {
 public:
 
-    static void init();
     static void write(string entry);
 
 private:
 
-    static ofstream* logfile;
+    static ofstream logfile;
 };
 
 #endif

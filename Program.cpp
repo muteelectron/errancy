@@ -8,15 +8,13 @@ bool Program::run()
         return false;
     }
 
-    splashcreen = new SplashScreen;
-    return splashcreen->run();
+    splashscreen = new SplashScreen;
+    return splashscreen->run();
 }
 
 
 int Program::init()
 {
-    Log::init();
-
     if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
     {
         Log::write("");
