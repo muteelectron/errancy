@@ -72,7 +72,10 @@ void Event::OnEvent(SDL_Event *Event)
 
         case SDL_MOUSEMOTION:
         {
-            OnMouseMove(Event->motion.x, Event->motion.y, Event->motion.xrel, Event->motion.yrel, (Event->motion.state&SDL_BUTTON(SDL_BUTTON_LEFT))!=0, (Event->motion.state&SDL_BUTTON(SDL_BUTTON_RIGHT))!=0, (Event->motion.state&SDL_BUTTON(SDL_BUTTON_MIDDLE))!=0);
+            OnMouseMove(Event->motion.x, Event->motion.y, Event->motion.xrel, Event->motion.yrel,
+                        (Event->motion.state&SDL_BUTTON(SDL_BUTTON_LEFT))!=0, 
+                        (Event->motion.state&SDL_BUTTON(SDL_BUTTON_RIGHT))!=0, 
+                        (Event->motion.state&SDL_BUTTON(SDL_BUTTON_MIDDLE))!=0);
             break;
         }
 
