@@ -8,7 +8,8 @@ bool Program::run()
         return false;
     }
 
-    splashscreen = new SplashScreen;
+    splashs
+    ++reen = new SplashScreen;
     return splashscreen->run();
 }
 
