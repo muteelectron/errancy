@@ -3,6 +3,7 @@
 
 #include "ProgramState.h"
 #include "Poker.h"
+#include "boost/thread/thread.hpp"
 
 class MainMenu : public ProgramState
 {
@@ -12,7 +13,21 @@ public:
 
 private:
 
+    bool running;
+
     Poker* poker;
+
+    void update();
+    void render();
+    void event();
+
+    void OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bool Right, bool Middle);
+    void OnLButtonDown(int mX, int mY);
+    void OnLButtonUp(int mX, int mY);
+    void OnRButtonDown(int mX, int mY);
+    void OnRButtonUp(int mX, int mY);
+    void OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode);
+    void OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode);
 };
 
 #endif
