@@ -7,7 +7,7 @@ bool MainMenu::run()
 
     boost::thread update_thread(&MainMenu::update, this);
     boost::thread render_thread(&MainMenu::render, this);
-    boost::thread event_thread(&MainMenu::event), this);
+    boost::thread event_thread(&MainMenu::event, this);
 
     update_thread.join();
     render_thread.join();

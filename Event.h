@@ -1,7 +1,7 @@
 #ifndef EVENT_H
 #define EVENT_H
 
-#include "SDL.h"
+#include <SDL/SDL.h>
 
 class Event 
 {

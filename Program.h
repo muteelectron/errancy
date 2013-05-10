@@ -1,7 +1,7 @@
 #ifndef PROGRAM_H
 #define PROGRAM_H
 
-#include "SDL.h"
+#include <SDL/SDL.h>
 #include "ProgramState.h"
 #include "SplashScreen.h"
 
