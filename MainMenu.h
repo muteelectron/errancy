@@ -3,7 +3,8 @@
 
 #include "ProgramState.h"
 #include "Poker.h"
-#include "boost/thread/thread.hpp"
+#include <boost/thread.hpp>
+#include <boost/bind.hpp>
 
 class MainMenu : public ProgramState
 {

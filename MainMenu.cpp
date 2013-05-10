@@ -5,9 +5,9 @@ bool MainMenu::run()
 {
     running = true;
 
-    boost::thread update_thread(&update);
-    boost::thread render_thread(&render);
-    boost::thread event_thread(&event);
+    boost::thread update_thread(&MainMenu::update, this);
+    boost::thread render_thread(&MainMenu::render, this);
+    boost::thread event_thread(&MainMenu::event), this);
 
     update_thread.join();
     render_thread.join();
