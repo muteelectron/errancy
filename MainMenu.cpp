@@ -87,3 +87,9 @@ void MainMenu::OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode)
 {
 
 }
+
+
+void MainMenu::OnExit()
+{
+    running = false;
+}

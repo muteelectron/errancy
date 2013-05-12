@@ -29,6 +29,7 @@ private:
     void OnRButtonUp(int mX, int mY);
     void OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode);
     void OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode);
+    void OnExit();
 };
 
 #endif

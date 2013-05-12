@@ -6,3 +6,8 @@ bool SplashScreen::run()
     mainmenu = new MainMenu;
     return mainmenu->run();
 }
+
+void SplashScreen::OnExit()
+{
+    
+}

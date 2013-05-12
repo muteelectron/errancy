@@ -13,6 +13,7 @@ public:
 private:
 
     MainMenu* mainmenu;
+    void OnExit();
 };
 
 #endif

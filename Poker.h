@@ -11,6 +11,10 @@ public:
     bool run();
 
 private:
+
+    Pack* pack;
+
+    void OnExit();
 };
 
 #endif
