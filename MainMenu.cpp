@@ -41,7 +41,7 @@ void MainMenu::event()
     SDL_Event event;
     while(running)
     {
-        SDL_PollEvent(&event)
+        SDL_PollEvent(&event);
         Event::OnEvent(&event);
     }
 }
