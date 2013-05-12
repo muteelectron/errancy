@@ -2,7 +2,7 @@
 
 PokerPlayer::PokerPlayer()
 {
-    hand = new Card[2]*;
+    hand = new Card*[2];
     hand[0] = NULL;
     hand[1] = NULL;
 }

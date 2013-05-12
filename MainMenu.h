@@ -5,6 +5,7 @@
 #include "Poker.h"
 #include <boost/thread.hpp>
 #include <boost/bind.hpp>
+#include "Log.h"
 
 class MainMenu : public ProgramState
 {

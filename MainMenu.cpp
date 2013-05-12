@@ -3,6 +3,7 @@
 
 bool MainMenu::run()
 {
+    Log::write("MainMenu has started");
     running = true;
 
     boost::thread update_thread(&MainMenu::update, this);
@@ -91,5 +92,6 @@ void MainMenu::OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode)
 
 void MainMenu::OnExit()
 {
+    Log::write("MainMenu OnExit");
     running = false;
 }

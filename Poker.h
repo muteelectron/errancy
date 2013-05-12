@@ -3,6 +3,9 @@
 
 #include "ProgramState.h"
 #include "Pack.h"
+#include <boost/thread.hpp>
+#include <boost/bind.hpp>
+#include "Log.h"
 
 class Poker : public ProgramState
 {
@@ -12,9 +15,16 @@ public:
 
 private:
 
-    Pack* pack;
+    bool running;
+
+    void render();
+    void update();
+    void game_loop();
+    void event();
 
     void OnExit();
+
+    Pack* pack;
 };
 
 #endif
