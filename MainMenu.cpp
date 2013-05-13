@@ -4,6 +4,7 @@
 bool MainMenu::run()
 {
     Log::write("MainMenu has started");
+    nextstate = NULL;
     running = true;
 
     boost::thread update_thread(&MainMenu::update, this);
@@ -14,8 +15,14 @@ bool MainMenu::run()
     render_thread.join();
     event_thread.join();
 
-    poker = new Poker;
-    return poker->run();
+    if(nextstate == NULL)
+    {
+        return true;
+    }
+    else
+    {
+        return nextstate->run();
+    }
 }
 
 

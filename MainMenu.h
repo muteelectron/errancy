@@ -16,8 +16,7 @@ public:
 private:
 
     bool running;
-
-    Poker* poker;
+    ProgramState* nextstate;
 
     void update();
     void render();
