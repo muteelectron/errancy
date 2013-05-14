@@ -15,9 +15,16 @@ public:
 private:
 
     SDL_Surface* image;
-    int fps;
-    int frame_width;
-    int current_frame;
+
+    double fps;
+    double update_interval;
+    const int frame_width;
+    const int frame_amount;
+
+    int x;
+    int y;
+
+    const unsigned int start_time;
 };
 
 #endif
