@@ -2,6 +2,7 @@
 #define PROGRAM_H
 
 #include <SDL/SDL.h>
+#include <fstream>
 #include "ProgramState.h"
 #include "SplashScreen.h"
 

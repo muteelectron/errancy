@@ -24,6 +24,8 @@ int Program::init()
 
     int width;
     int height;
+    std::ifstream screen_res_input("screen_res.txt");
+    screen_res_input >> width >> height;
 
     if((Surf_Display = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_FULLSCREEN)) == NULL)
     {

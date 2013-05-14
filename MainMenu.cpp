@@ -4,25 +4,28 @@
 bool MainMenu::run()
 {
     Log::write("MainMenu has started");
-    nextstate = NULL;
+
     running = true;
 
     boost::thread update_thread(&MainMenu::update, this);
     boost::thread render_thread(&MainMenu::render, this);
     boost::thread event_thread(&MainMenu::event, this);
 
-    update_thread.join();
-    render_thread.join();
-    event_thread.join();
+    do
+    {
+        nextstate = NULL;
 
-    if(nextstate == NULL)
-    {
-        return true;
-    }
-    else
-    {
-        return nextstate->run();
-    }
+        update_thread.join();
+        render_thread.join();
+        event_thread.join();
+        nextstate->run();
+
+        running = true;
+
+
+    }while(nextstate != NULL)
+
+    return true;
 }
 
 
