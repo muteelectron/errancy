@@ -1,7 +1,7 @@
 #include "Surface.h"
 
 
-SDL_Surface* Surface::OnLoad(char *File)
+SDL_Surface *Surface::OnLoad(char *File)
 {
     SDL_Surface* Surf_Temp = NULL;
     SDL_Surface* Surf_Return = NULL;
@@ -12,8 +12,7 @@ SDL_Surface* Surface::OnLoad(char *File)
     Surf_Return = SDL_DisplayFormatAlpha(Surf_Temp);
     SDL_FreeSurface(Surf_Temp);
     return Surf_Return;
-}
-
+};
 
 bool Surface::OnDraw(SDL_Surface* Surf_Dest, SDL_Surface* Surf_Src, int X, int Y)
 {
@@ -26,8 +25,7 @@ bool Surface::OnDraw(SDL_Surface* Surf_Dest, SDL_Surface* Surf_Src, int X, int Y
     DestR.y = Y;
     SDL_BlitSurface(Surf_Src, NULL, Surf_Dest, &DestR);
     return true;
-}
-
+};
 
 bool Surface::OnDraw(SDL_Surface* Surf_Dest, SDL_Surface* Surf_Src, int X, int Y, int X2, int Y2, int W, int H)
 {
