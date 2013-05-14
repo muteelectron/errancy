@@ -18,13 +18,13 @@ private:
 
     double fps;
     double update_interval;
-    const int frame_width;
-    const int frame_amount;
+    int frame_width;
+    int frame_amount;
 
     int x;
     int y;
 
-    const unsigned int start_time;
+    unsigned int start_time;
 };
 
 #endif
