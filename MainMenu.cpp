@@ -23,7 +23,7 @@ bool MainMenu::run()
         running = true;
 
 
-    }while(nextstate != NULL)
+    }while(nextstate != NULL);
 
     return true;
 }
