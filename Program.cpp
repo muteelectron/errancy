@@ -4,6 +4,7 @@
 bool Program::run()
 {
     Log::write("Program has started");
+
     if(!init())
     {
         return false;
@@ -21,17 +22,32 @@ int Program::init()
         Log::write("SDL initialization error");
         return false;
     }
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
     int width;
     int height;
     std::ifstream screen_res_input("screen_res.txt");
     screen_res_input >> width >> height;
 
-    if((Surf_Display = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_FULLSCREEN)) == NULL)
+    if(!SDL_SetVideoMode(width, height, 32, SDL_OPENGL | SDL_FULLSCREEN))
     {
         Log::write("SDL_video_surface initialization error");
         return false;
     }
+
+
+    glViewport(0, 0, width, height);
+    glEnable(GL_TEXTURE_2D);
+    glEnable (GL_BLEND);
+    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+
+    glOrtho(0, width, 0, height, -1, 1);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 
     return true;
 }
