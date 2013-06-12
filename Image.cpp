@@ -105,15 +105,27 @@ void Image::render()
 }
 
 
-void Image::set_x(double x_init)
+void Image::set_x(int x_init)
 {
     x = x_init;
 }
 
 
-void Image::set_y(double y_init)
+void Image::set_y(int y_init)
 {
     y = y_init;
+}
+
+
+void Image::set_width(int width_init)
+{
+    width = width_init;
+}
+
+
+void Image::set_y(int height_init)
+{
+    height = height_init;
 }
 
 
@@ -123,15 +135,27 @@ void Image::set_angle(double angle_init)
 }
 
 
-double Image::get_x()
+int Image::get_x()
 {
     return x;
 }
 
 
-double Image::get_y()
+int Image::get_y()
 {
     return y;
+}
+
+
+int Image::get_width()
+{
+    return width;
+}
+
+
+int Image::get_height()
+{
+    return height;
 }
 
 

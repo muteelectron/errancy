@@ -26,23 +26,27 @@ public:
 
     void render();
 
-    void set_x(double x_init);
-    void set_y(double y_init);
+    void set_x(int x_init);
+    void set_y(int y_init);
+    void set_width(int width_init);
+    void set_height(int height_init);
     void set_angle(double angle_init);
 
-    double get_x();
-    double get_y();
+    int get_x();
+    int get_y();
+    int get_width();
+    int get_height();
     double get_angle();
 
 private:
 
     GLuint texture;
 
-    double x;
-    double y;
+    int x;
+    int y;
 
-    double width;
-    double height;
+    int width;
+    int height;
 
     double angle;
 };
