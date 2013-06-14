@@ -28,10 +28,31 @@ public:
     Graphics(char* filename);
     ~Graphics();
 
+    void render();
+
+
+    int get_x();
+    int get_y();
+    int get_width();
+    int get_height();
+    double get_angle();
+
+    int set_x(int x_init);
+    int set_y(int y_init);
+    int set_width(int width_init);
+    int set_height(int height_init);
+    double set_angle(double angle);
+
 private:
 
     GraphicsType graphics_type;
     GLuint texture;
+
+    int x;
+    int y;
+    int width;
+    int height;
+    double angle;
 };
 
 #endif
