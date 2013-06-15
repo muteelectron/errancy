@@ -123,7 +123,7 @@ void Image::set_width(int width_init)
 }
 
 
-void Image::set_y(int height_init)
+void Image::set_height(int height_init)
 {
     height = height_init;
 }

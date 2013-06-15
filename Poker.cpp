@@ -1,9 +1,8 @@
 #include "Poker.h"
 
 
-bool Poker::run()
+bool Poker::run(char* template_file_name)
 {
-    Log::write("Poker has started");
     running = true;
 
     boost::thread render_thread(&Poker::render, this);

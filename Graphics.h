@@ -30,7 +30,7 @@ class Graphics
 {
 public:
 
-    Graphics(char* filename);
+    Graphics(char* file_name);
     ~Graphics();
 
     void render();
@@ -55,7 +55,7 @@ public:
 
 private:
 
-    void load_image(char* filename);
+    void load_image(char* file_name);
 
     GraphicsType graphics_type;
     GLuint texture;

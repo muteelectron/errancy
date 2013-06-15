@@ -11,7 +11,7 @@ class Poker : public ProgramState
 {
 public:
 
-    bool run();
+    bool run(char* template_file_name);
 
 private:
 

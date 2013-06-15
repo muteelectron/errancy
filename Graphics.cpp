@@ -1,9 +1,9 @@
-center_#include "Graphics.h"
+#include "Graphics.h"
 
 
-Graphics::Graphics(char* filename)
+Graphics::Graphics(char* file_name)
 {
-    ifstream input(filename);
+    ifstream input(file_name);
 
     char* graphics_type_init;
     char* graphics_file_name;
@@ -88,11 +88,11 @@ double Graphics::get_angle(AngleDirection angle_direction)
 
 void Graphics::set_center_x(int center_x_init)
 {
-    x = x_init;
+    center_x = center_x_init;
 }
 
 
-void Graphics::set_y(int center_y_init)
+void Graphics::set_center_y(int center_y_init)
 {
     center_y = center_y_init;
 }
@@ -120,7 +120,7 @@ void Graphics::set_angle(double angle_ccw_init, AngleDirection angle_direction)
     {
         angle_ccw = 360 - angle_ccw_init;
     }
-    angle_ccw -= ((int)angle_ccw / 360) * 360
+    angle_ccw -= ((int)angle_ccw / 360) * 360;
 }
 
 
@@ -152,9 +152,9 @@ void Graphics::set_frame_interval_ms(double frame_interval_ms_init)
 }
 
 
-void Graphics::load_image(char* filename)
+void Graphics::load_image(char* file_name)
 {
-    SDL_Surface* image = IMG_Load(filename);
+    SDL_Surface* image = IMG_Load(file_name);
     if (image == NULL)
     {
         // ERROR
