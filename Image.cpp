@@ -47,7 +47,7 @@ Image::Image(char* filename)
     }
     else
     {
-        // ERROR: the image is not truecolor...this will break
+        // ERROR: the image is not truecolor
     }
 
     glGenTextures(1, &texture);
