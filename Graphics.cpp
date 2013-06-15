@@ -12,13 +12,22 @@ Graphics::Graphics(char* filename)
 
     load_image(graphics_file_name);
 
+    input >> center_x;
+    input >> center_y;
+    input >> width;
+
+    int height_coef;
+    input >> height_coef;
+    height = width * height_coef;
+
     if(graphics_type_init == "static")
     {
         
     }
     else if(graphics_type_init == "animated")
     {
-
+        input >> fps;
+        frame_interval_ms = 1000 / fps;
     }
     else
     {
@@ -77,31 +86,31 @@ double Graphics::get_angle(AngleDirection angle_direction)
 
 
 
-int Graphics::set_center_x(int center_x_init)
+void Graphics::set_center_x(int center_x_init)
 {
     x = x_init;
 }
 
 
-int Graphics::set_y(int center_y_init)
+void Graphics::set_y(int center_y_init)
 {
     center_y = center_y_init;
 }
 
 
-int Graphics::set_width(int width_init)
+void Graphics::set_width(int width_init)
 {
     width = width_init;
 }
 
 
-int Graphics::set_height(int height_init)
+void Graphics::set_height(int height_init)
 {
     height = height_init;
 }
 
 
-double Graphics::set_angle(double angle_ccw_init, AngleDirection angle_direction)
+void Graphics::set_angle(double angle_ccw_init, AngleDirection angle_direction)
 {
     if(angle_direction == CCW)
     {
@@ -112,6 +121,34 @@ double Graphics::set_angle(double angle_ccw_init, AngleDirection angle_direction
         angle_ccw = 360 - angle_ccw_init;
     }
     angle_ccw -= ((int)angle_ccw / 360) * 360
+}
+
+
+void Graphics::set_fps(int fps_init)
+{
+    if(fps_init > 0)
+    {
+        fps = fps_init;
+        frame_interval_ms = 1000 / fps_init;
+    }
+    else
+    {
+        // ERROR
+    }
+}
+
+
+void Graphics::set_frame_interval_ms(double frame_interval_ms_init)
+{
+    if(frame_interval_ms_init > 0)
+    {
+        frame_interval_ms = frame_interval_ms_init;
+        fps = frame_interval_ms * 1000;
+    }
+    else
+    {
+        // ERROR
+    }
 }
 
 

@@ -41,12 +41,17 @@ public:
     int get_width();
     int get_height();
     double get_angle(AngleDirection angle_direction);
+    int get_fps();
+    double get_frame_interval();
 
-    int set_center_x(int center_x_init);
-    int set_center_y(int center_y_init);
-    int set_width(int width_init);
-    int set_height(int height_init);
-    double set_angle(double angle_ccw_init, AngleDirection angle_direction);
+    void set_center_x(int center_x_init);
+    void set_center_y(int center_y_init);
+    void set_width(int width_init);
+    void set_height(int height_init);
+    void set_angle(double angle_ccw_init, AngleDirection angle_direction);
+    void set_fps(int fps_init);
+    void set_frame_interval_ms(double frame_interval_ms_init);
+
 
 private:
 
@@ -60,6 +65,9 @@ private:
     int width;
     int height;
     double angle_ccw;
+
+    int fps;
+    double frame_interval_ms;
 };
 
 #endif
