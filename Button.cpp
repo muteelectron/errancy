@@ -1,6 +1,6 @@
 #include "Button.h"
 
-Button::Button(void (*foo)())
+Button::Button(char* file_name, void (*foo)())
 {
     action = foo;
 }

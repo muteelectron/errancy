@@ -7,7 +7,7 @@ class Button
 {
 public:
 
-    Button(void (*foo)());
+    Button(char* file_name, void (*foo)());
     ~Button();
 
     bool hover(int x, int y);

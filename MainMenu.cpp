@@ -3,8 +3,6 @@
 
 bool MainMenu::run()
 {
-    Log::write("MainMenu has started");
-
     running = true;
 
     boost::thread update_thread(&MainMenu::update, this);
