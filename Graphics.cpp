@@ -72,15 +72,26 @@ int Graphics::get_height()
 }
 
 
-double Graphics::get_angle(AngleDirection angle_direction)
+double Graphics::get_angle(AngleDirection angle_direction, AngleType angle_type)
 {
+    double angle_return;
+
     if(angle_direction == CCW)
     {
-        return angle_ccw;
+        angle_return = angle_ccw_rad;
     }
     else
     {
-        return (angle_ccw == 0 ? 0 : 360 - angle_ccw);
+        angle_return = (angle_ccw_rad == 0 ? 0 : 2 - angle_ccw_rad);
+    }
+
+    if(angle_type == RADIAN)
+    {
+        return angle_return;
+    }
+    else
+    {
+        return angle_return * 180 / M_PI;
     }
 }
 
@@ -110,17 +121,28 @@ void Graphics::set_height(int height_init)
 }
 
 
-void Graphics::set_angle(double angle_ccw_init, AngleDirection angle_direction)
+void Graphics::set_angle(double angle_init, AngleDirection angle_direction, AngleType angle_type)
 {
-    if(angle_direction == CCW)
+    if(angle_init < 0)
     {
-        angle_ccw = angle_ccw_init;
+        // ERROR
+    }
+
+    if(angle_type == RADIAN)
+    {
+        angle_ccw_rad = angle_init;
     }
     else
     {
-        angle_ccw = 360 - angle_ccw_init;
+        angle_ccw_rad = angle_init * M_PI / 180;
     }
-    angle_ccw -= ((int)angle_ccw / 360) * 360;
+
+    angle_ccw_rad -= ((int)angle_ccw_rad / 2) * 2;
+
+    if(angle_direction == CW)
+    {
+        angle_ccw_rad = (angle_ccw_rad == 0 ? 0 : 2 - angle_ccw_rad);
+    }
 }
 
 

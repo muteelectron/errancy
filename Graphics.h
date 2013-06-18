@@ -18,6 +18,7 @@
 
 #endif
 
+#include <cmath>
 #include <fstream>
 using std::ifstream;
 
@@ -25,6 +26,7 @@ using std::ifstream;
 enum GraphicsType{STATIC, ANIMATED};
 
 enum AngleDirection{CW, CCW};
+enum AngleType{DEGREE, RADIAN};
 
 class Graphics
 {
@@ -40,7 +42,7 @@ public:
     int get_center_y();
     int get_width();
     int get_height();
-    double get_angle(AngleDirection angle_direction);
+    double get_angle(AngleDirection angle_direction, AngleType angle_type);
     int get_fps();
     double get_frame_interval();
 
@@ -48,7 +50,7 @@ public:
     void set_center_y(int center_y_init);
     void set_width(int width_init);
     void set_height(int height_init);
-    void set_angle(double angle_ccw_init, AngleDirection angle_direction);
+    void set_angle(double angle_init, AngleDirection angle_direction, AngleType angle_type);
     void set_fps(int fps_init);
     void set_frame_interval_ms(double frame_interval_ms_init);
 
@@ -64,7 +66,7 @@ private:
     int center_y;
     int width;
     int height;
-    double angle_ccw;
+    double angle_ccw_rad;
 
     int fps;
     double frame_interval_ms;
