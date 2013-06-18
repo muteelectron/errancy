@@ -20,6 +20,10 @@ Graphics::Graphics(char* file_name)
     input >> height_coef;
     height = width * height_coef;
 
+    // height_coef == tan(PI - angle)
+
+    angle_ccw_rad = M_PI - atan(height_coef);
+
     if(graphics_type_init == "static")
     {
         
