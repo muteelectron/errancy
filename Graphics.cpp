@@ -1,5 +1,16 @@
 #include "Graphics.h"
 
+ //    *.graphics file template    //
+////////////////////////////////////
+// graphics type(static or animated)
+// image's file name
+// center's x coordinat
+// center's y coordinat
+// width(in 0-1 interval)
+// height/width ratio
+// number of frames(only if graphics is animated)
+// frames per second(only if graphics is animated)
+
 
 Graphics::Graphics(char* file_name)
 {
@@ -20,9 +31,12 @@ Graphics::Graphics(char* file_name)
     input >> height_coef;
     height = width * height_coef;
 
+    semi_diagonal = sqrt(sqr(width) + sqr(height));
+
     // height_coef == tan(PI - angle)
 
-    angle_ccw_rad = M_PI - atan(height_coef);
+    angle_ccw_rad_default = M_PI - atan(height_coef);
+    angle_ccw_rad = 0;
 
     if(graphics_type_init == "static")
     {
@@ -30,6 +44,7 @@ Graphics::Graphics(char* file_name)
     }
     else if(graphics_type_init == "animated")
     {
+        input >> num_of_frames;
         input >> fps;
         frame_interval_ms = 1000 / fps;
     }
@@ -48,7 +63,34 @@ Graphics::~Graphics()
 
 void Graphics::render()
 {
+    glPushMatrix();
 
+    glRotatef(360 - angle_ccw_rad * 180 / M_PI);
+
+    int top_left_corner_x;
+    int top_left_corner_y;
+    top_left_corner_x = x + semi_diagonal * cos(angle_ccw_rad + angle_ccw_rad_default);
+    top_left_corner_y = y + semi_diagonal * sin(angle_ccw_rad + angle_ccw_rad_default);
+
+    glBindTexture(GL_TEXTURE_2D, texture);
+
+    glBegin(GL_POLYGON);
+
+        glTexture2f();
+        glVertex2f();
+
+        glTexture2f();
+        glVertex2f();
+
+        glTexture2f();
+        glVertex2f();
+
+        glTexture2f();
+        glVertex2f();
+
+    glEnd();
+
+    glPopMatrix();
 }
 
 

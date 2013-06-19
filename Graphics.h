@@ -67,7 +67,10 @@ private:
     int width;
     int height;
     double angle_ccw_rad;
+    double angle_ccw_rad_default;
+    double semi_diagonal;
 
+    int num_of_frames;
     int fps;
     double frame_interval_ms;
 };
