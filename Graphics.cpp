@@ -76,17 +76,21 @@ void Graphics::render()
 
     glBegin(GL_POLYGON);
 
-        glTexture2f();
-        glVertex2f();
+        // Bottom-Left
+        glTexture2f( , 0);
+        glVertex2f(top_left_corner_x, top_left_corner_y - height);
 
+        // Bottom-Right
         glTexture2f();
-        glVertex2f();
+        glVertex2f(top_left_corner_x + width, top_left_corner_y - height);
 
+        // Top-Right
         glTexture2f();
-        glVertex2f();
+        glVertex2f(top_left_corner_x + width, top_left_corner_y);
 
+        // Top-Left
         glTexture2f();
-        glVertex2f();
+        glVertex2f(top_left_corner_x, top_left_corner_y);
 
     glEnd();
 

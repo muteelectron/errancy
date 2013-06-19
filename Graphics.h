@@ -72,7 +72,8 @@ private:
 
     int num_of_frames;
     int fps;
-    double frame_interval_ms;
+    unsigned int frame_interval_ms;
+    unsigned int last_render_time;
 };
 
 #endif
