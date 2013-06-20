@@ -31,7 +31,7 @@ Graphics::Graphics(char* file_name)
     input >> height_coef;
     height = width * height_coef;
 
-    semi_diagonal = sqrt(sqr(width) + sqr(height));
+    semi_diagonal = sqrt(pow(width, 2) + pow(height, 2));
 
     // height_coef == tan(PI - angle)
 
@@ -58,7 +58,7 @@ Graphics::Graphics(char* file_name)
 
 Graphics::~Graphics()
 {
-
+    glDeleteTextures(1, &texture);
 }
 
 
@@ -66,12 +66,12 @@ void Graphics::render()
 {
     glPushMatrix();
 
-    glRotatef(360 - angle_ccw_rad * 180 / M_PI);
+    glRotatef(360 - angle_ccw_rad * 180 / M_PI, 0, 0, 1);
 
     int top_left_corner_x;
     int top_left_corner_y;
-    top_left_corner_x = x + semi_diagonal * cos(angle_ccw_rad + angle_ccw_rad_default);
-    top_left_corner_y = y + semi_diagonal * sin(angle_ccw_rad + angle_ccw_rad_default);
+    top_left_corner_x = center_x + semi_diagonal * cos(angle_ccw_rad + angle_ccw_rad_default);
+    top_left_corner_y = center_y + semi_diagonal * sin(angle_ccw_rad + angle_ccw_rad_default);
 
     glBindTexture(GL_TEXTURE_2D, texture);
 
@@ -93,22 +93,22 @@ void Graphics::render()
         cur_frame = 0;
     }
 
-    glBegin(GL_POLYGON);
+    glBegin(GL_QUADS);
 
         // Bottom-Left
-        glTexture2f((double)cur_frame / num_of_frames, 0);
+        glTexCoord2d((double)cur_frame / num_of_frames, 0);
         glVertex2f(top_left_corner_x, top_left_corner_y - height);
 
         // Bottom-Right
-        glTexture2f((double)(cur_frame + 1) / num_of_frames, 0);
+        glTexCoord2d((double)(cur_frame + 1) / num_of_frames, 0);
         glVertex2f(top_left_corner_x + width, top_left_corner_y - height);
 
         // Top-Right
-        glTexture2f((double)(cur_frame + 1) / num_of_frames, 1);
+        glTexCoord2d((double)(cur_frame + 1) / num_of_frames, 1);
         glVertex2f(top_left_corner_x + width, top_left_corner_y);
 
         // Top-Left
-        glTexture2f((double)cur_frame / num_of_frames, 1);
+        glTexCoord2d((double)cur_frame / num_of_frames, 1);
         glVertex2f(top_left_corner_x, top_left_corner_y);
 
     glEnd();
