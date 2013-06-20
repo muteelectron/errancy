@@ -16,6 +16,8 @@ public:
 
     bool run(char* template_file_name);
 
+    void CleanUp();
+
 private:
 
     bool running;
@@ -27,10 +29,13 @@ private:
 
     void OnExit();
 
-    PokerPlayer** player;
+    int num_of_seats;
+    PokerPlayer** seat;
     Pack* pack;
 
     int user_seat;
+
+    int closer_seat(int seat_num);
 };
 
 #endif

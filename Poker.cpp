@@ -15,7 +15,21 @@ bool Poker::run(char* template_file_name)
     game_loop_thread.join();
     event_thread.join();
 
+
+
     return true;
+}
+
+
+void Poker::CleanUp()
+{
+    for(int i = 0; i < seat_amount; ++i)
+    {
+        delete[] seat[i];
+    }
+    delete[] seat;
+
+    delete[] pack;
 }
 
 
@@ -60,4 +74,33 @@ void Poker::OnExit()
     running_mtx.lock();
     running = false;
     running_mtx.unlock();
+}
+
+
+int Poker::closer::seat(int seat_num)
+{
+    if(seat[seat_num] != NULL)
+    {
+        return seat_num;
+    }
+
+    int i;
+    i = seat_num;
+
+    do
+    {
+        ++i;
+        if(i == seat_amount)
+        {
+            i = 0;
+        }
+    }while(seat[i] == NULL && i != seat_num);
+    if(seat[i] != NULL)
+    {
+        return i;
+    }
+    else
+    {
+        // ERROR: THERE AREN'T ANY PLAYERS
+    }
 }
