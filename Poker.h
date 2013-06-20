@@ -2,6 +2,7 @@
 #define POKER_H
 
 #include "ProgramState.h"
+#include "PokerPlayer.h"
 #include "Pack.h"
 #include <boost/thread.hpp>
 #include <boost/bind.hpp>
@@ -24,7 +25,10 @@ private:
 
     void OnExit();
 
+    PokerPlayer** player;
     Pack* pack;
+
+    int user_seat;
 };
 
 #endif
