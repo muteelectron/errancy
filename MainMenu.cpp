@@ -9,38 +9,49 @@ bool MainMenu::run()
     boost::thread render_thread(&MainMenu::render, this);
     boost::thread event_thread(&MainMenu::event, this);
 
-    do
+    while(true)
     {
         nextstate = NULL;
 
         update_thread.join();
         render_thread.join();
         event_thread.join();
-        nextstate->run();
+        
+        if(nextstate != NULL)
+        {
+            nextstate->run();
+        }
+        else
+        {
+            return true;
+        }
 
         running = true;
 
 
-    }while(nextstate != NULL);
-
+    }
     return true;
 }
 
 
 void MainMenu::update()
 {
+    running_mtx.lock();
     while(running)
     {
-
+        running_mtx.unlock();
+        running_mtx.lock();
     }
 }
 
 
 void MainMenu::render()
 {
+    running_mtx.lock();
     while(running)
     {
-        
+        running_mtx.unlock();
+        running_mtx.lock();
     }
 }
 
@@ -48,10 +59,13 @@ void MainMenu::render()
 void MainMenu::event()
 {
     SDL_Event event;
+    running_mtx.lock();
     while(running)
     {
+        running_mtx.unlock();
         SDL_PollEvent(&event);
         Event::OnEvent(&event);
+        running_mtx.lock();
     }
 }
 
@@ -100,6 +114,7 @@ void MainMenu::OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode)
 
 void MainMenu::OnExit()
 {
-    Log::write("MainMenu OnExit");
+    running_mtx.lock();
     running = false;
+    running_mtx.unlock();
 }

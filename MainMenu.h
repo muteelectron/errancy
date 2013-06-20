@@ -16,6 +16,8 @@ public:
 private:
 
     bool running;
+    boost::mutex running_mtx;
+
     ProgramState* nextstate;
 
     void update();
