@@ -6,12 +6,10 @@ bool Poker::run(char* template_file_name)
     running = true;
 
     boost::thread render_thread(&Poker::render, this);
-    boost::thread update_thread(&Poker::update, this);
     boost::thread game_loop_thread(&Poker::game_loop, this);
     boost::thread event_thread(&Poker::event, this);
 
     render_thread.join();
-    update_thread.join();
     game_loop_thread.join();
     event_thread.join();
 
@@ -21,27 +19,22 @@ bool Poker::run(char* template_file_name)
 
 void Poker::render()
 {
+    running_mtx.lock();
     while(running)
     {
-
-    }
-}
-
-
-void Poker::update()
-{
-    while(running)
-    {
-
+        running_mtx.unlock();
+        running_mtx.lock();
     }
 }
 
 
 void Poker::game_loop()
 {
+    running_mtx.lock();
     while(running)
     {
-
+        running_mtx.unlock();
+        running_mtx.lock();
     }
 }
 
@@ -49,16 +42,20 @@ void Poker::game_loop()
 void Poker::event()
 {
     SDL_Event event;
+    running_mtx.lock();
     while(running)
     {
+        running_mtx.unlock();
         SDL_PollEvent(&event);
         Event::OnEvent(&event);
+        running_mtx.lock();
     }
 }
 
 
 void Poker::OnExit()
 {
-    Log::write("Poker OnExit");
+    running_mtx.lock();
     running = false;
+    running_mtx.unlock();
 }

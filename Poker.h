@@ -16,9 +16,9 @@ public:
 private:
 
     bool running;
+    boost::mutex running_mtx;
 
     void render();
-    void update();
     void game_loop();
     void event();
 
