@@ -56,6 +56,7 @@ void Poker::game_loop()
         while(num_of_players > 1)
         {
             poker_round();
+            button = closer_seat(button + 1);
         }
 
         running_mtx.lock();
@@ -65,6 +66,16 @@ void Poker::game_loop()
 
 void Poker::poker_round()
 {
+    bank = 0;
+
+    cur_player = closer_seat(button + 1);
+    seat[cur_player]->blind(small_blind);
+    cur_player = closer_seat(cur_player + 1);
+    seat[cur_player]->blind(big_blind);
+// УТОЧНИТЬ: ОСТАЛЬНЫЕ ПОВЫШАЮТ ДО БОЛЬШОГО БЛАИНДА ИЛИ ОЛ-ИНА ИГРОКА С БОЛЬШИМ БЛАИНДОМ
+    highest_stake = big_blind;
+    highest_stake_player = cur_player;
+    cur_player = closer_seat(cur_player + 1);
     // PREFLOP
     trade_round();
 
@@ -89,16 +100,6 @@ void Poker::poker_round()
 
 void Poker::trade_round()
 {
-    unsigned int bank;
-    bank = 0;
-
-    int highest_stake;
-    int highest_stake_player;
-    highest_stake = 0;
-    highest_stake_player = button;
-
-    int cur_player;
-    cur_player = button;
     int stake;
 
     do
@@ -120,6 +121,10 @@ void Poker::trade_round()
             // RAISE
             highest_stake = stake;
             highest_stake_player = cur_player;
+        }
+        else if(highest_stake > 0 && stake < highest_stake)
+        {
+            // ALL IN
         }
         else if(stake == highest_stake)
         {

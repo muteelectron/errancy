@@ -38,8 +38,15 @@ private:
     Pack* pack;
     Card** table_card;
 
+    int small_blind;
+    int big_blind;
+
     int user_seat;
     int button;
+    int cur_player;
+    int bank;
+    int highest_stake;
+    int highest_stake_player;
 
     int closer_seat(int seat_num);
 };

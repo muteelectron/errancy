@@ -12,7 +12,8 @@ public:
     PokerPlayer();
     ~PokerPlayer();
     Card** fold();
-    int stake(int min_stake);
+    virtual int stake(int min_stake) = 0;
+    int blind(int value);
     void pick_card(Card* card);
 
 private:

@@ -20,20 +20,20 @@ Card** PokerPlayer::fold()
 }
 
 
-int PokerPlayer::stake(int min_stake)
+int PokerPlayer::blind(int value)
 {
-    if(min_stake >= cash)
+    if(value >= cash)
     {
+        // ALL IN
         int rest_money;
-        rest_money = cash;
+        rest_money = cach;
         cash = 0;
-        //ALL IN
         return rest_money;
     }
     else
     {
-        cash -= min_stake;
-        return min_stake;
+        cach -= value;
+        return value;
     }
 }
 
