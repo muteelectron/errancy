@@ -33,6 +33,7 @@ private:
     void OnExit();
 
     int num_of_seats;
+    int num_of_players;
     PokerPlayer** seat;
     Pack* pack;
     Card** table_card;

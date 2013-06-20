@@ -53,7 +53,10 @@ void Poker::game_loop()
     {
         running_mtx.unlock();
 
-
+        while(num_of_players > 1)
+        {
+            poker_round();
+        }
 
         running_mtx.lock();
     }
@@ -62,7 +65,15 @@ void Poker::game_loop()
 
 void Poker::poker_round()
 {
-
+    trade_round();
+    table_card[0] = pack->pop_top();
+    table_card[1] = pack->pop_top();
+    table_card[2] = pack->pop_top();
+    trade_round();
+    table_card[3] = pack->pop_top();
+    trade_round();
+    table_card[4] = pack->pop_top();
+    trade_round();
 }
 
 
