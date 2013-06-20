@@ -134,7 +134,7 @@ void Poker::trade_round()
             pack->push_bot(folded_card[1]);
         }
         cur_player = closer_seat(cur_player + 1);
-    }while(highest_stake_player != button);
+    }while(cur_player != button);
 }
 
 
