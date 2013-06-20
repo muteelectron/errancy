@@ -40,13 +40,14 @@ Graphics::Graphics(char* file_name)
 
     if(graphics_type_init == "static")
     {
-        
+        num_of_frames = 1;
     }
     else if(graphics_type_init == "animated")
     {
         input >> num_of_frames;
         input >> fps;
         frame_interval_ms = 1000 / fps;
+        first_render_time = 0;
     }
     else
     {
@@ -74,22 +75,40 @@ void Graphics::render()
 
     glBindTexture(GL_TEXTURE_2D, texture);
 
+    int cur_frame;
+    if(graphics_type == ANIMATED)
+    {
+        if(first_render_time == 0)
+        {
+            first_render_time = SDL_GetTicks();
+            cur_frame = 0;
+        }
+        else
+        {
+            cur_frame = ((SDL_GetTicks() - first_render_time) / frame_interval_ms) % num_of_frames;
+        }
+    }
+    else
+    {
+        cur_frame = 0;
+    }
+
     glBegin(GL_POLYGON);
 
         // Bottom-Left
-        glTexture2f( , 0);
+        glTexture2f((double)cur_frame / num_of_frames, 0);
         glVertex2f(top_left_corner_x, top_left_corner_y - height);
 
         // Bottom-Right
-        glTexture2f();
+        glTexture2f((double)(cur_frame + 1) / num_of_frames, 0);
         glVertex2f(top_left_corner_x + width, top_left_corner_y - height);
 
         // Top-Right
-        glTexture2f();
+        glTexture2f((double)(cur_frame + 1) / num_of_frames, 1);
         glVertex2f(top_left_corner_x + width, top_left_corner_y);
 
         // Top-Left
-        glTexture2f();
+        glTexture2f((double)cur_frame / num_of_frames, 1);
         glVertex2f(top_left_corner_x, top_left_corner_y);
 
     glEnd();

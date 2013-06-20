@@ -73,7 +73,7 @@ private:
     int num_of_frames;
     int fps;
     unsigned int frame_interval_ms;
-    unsigned int last_render_time;
+    unsigned int first_render_time;
 };
 
 #endif
