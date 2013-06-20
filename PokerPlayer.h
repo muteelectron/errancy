@@ -12,7 +12,7 @@ public:
     PokerPlayer();
     ~PokerPlayer();
     Card** fold();
-    int stake(int value);
+    int stake(int min_stake);
     void pick_card(Card* card);
 
 private:

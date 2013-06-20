@@ -20,9 +20,9 @@ Card** PokerPlayer::fold()
 }
 
 
-int PokerPlayer::stake(int value)
+int PokerPlayer::stake(int min_stake)
 {
-    if(value >= cash)
+    if(min_stake >= cash)
     {
         int rest_money;
         rest_money = cash;
@@ -32,8 +32,8 @@ int PokerPlayer::stake(int value)
     }
     else
     {
-        cash -= value;
-        return value;
+        cash -= min_stake;
+        return min_stake;
     }
 }
 

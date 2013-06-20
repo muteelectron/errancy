@@ -66,20 +66,37 @@ void Poker::game_loop()
 void Poker::poker_round()
 {
     trade_round();
+
+    // FLOP
     table_card[0] = pack->pop_top();
     table_card[1] = pack->pop_top();
     table_card[2] = pack->pop_top();
+
     trade_round();
+
+    // TURN
     table_card[3] = pack->pop_top();
+
     trade_round();
+
+    // RIVER
     table_card[4] = pack->pop_top();
+
     trade_round();
 }
 
 
 void Poker::trade_round()
 {
+    int highest_stake;
+    int highest_stake_player;
+    highest_stake = 0;
+    highest_stake_player = button;
 
+    do
+    {
+        
+    }while(highest_stake_player != button);
 }
 
 
