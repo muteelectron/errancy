@@ -3,6 +3,8 @@
 
 bool Poker::run(char* template_file_name)
 {
+    std::ifstream input(template_file_name);
+
     running = true;
 
     boost::thread render_thread(&Poker::render, this);

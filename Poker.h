@@ -3,9 +3,11 @@
 
 #include "ProgramState.h"
 #include "PokerPlayer.h"
+#include "PokerBot.h"
 #include "Pack.h"
 #include <boost/thread.hpp>
 #include <boost/bind.hpp>
+#include <fstream>
 #include "Log.h"
 
 class Poker : public ProgramState
