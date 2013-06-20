@@ -65,6 +65,7 @@ void Poker::game_loop()
 
 void Poker::poker_round()
 {
+    // PREFLOP
     trade_round();
 
     // FLOP
@@ -88,14 +89,51 @@ void Poker::poker_round()
 
 void Poker::trade_round()
 {
+    unsigned int bank;
+    bank = 0;
+
     int highest_stake;
     int highest_stake_player;
     highest_stake = 0;
     highest_stake_player = button;
 
+    int cur_player;
+    cur_player = button;
+    int stake;
+
     do
     {
-        
+        stake = seat[cur_player]->stake(highest_stake);
+        bank += stake;
+        if(stake == 0)
+        {
+            // CHECK
+        }
+        else if(stake > 0 && highest_stake == 0)
+        {
+            // BET
+            highest_stake = stake;
+            highest_stake_player = cur_player;
+        }
+        else if(stake > 0 && highest_stake > 0)
+        {
+            // RAISE
+            highest_stake = stake;
+            highest_stake_player = cur_player;
+        }
+        else if(stake == highest_stake)
+        {
+            // CALL
+        }
+        else if(stake == -1)
+        {
+            // FOLD
+            Card* folded_card[2];
+            folded_card = seat[cur_player]->fold();
+            pack->push_bot(folded_card[0]);
+            pack->push_bot(folded_card[1]);
+        }
+        cur_player = closer_seat(cur_player + 1);
     }while(highest_stake_player != button);
 }
 
@@ -122,7 +160,7 @@ void Poker::OnExit()
 }
 
 
-int Poker::closer::seat(int seat_num)
+int Poker::closer_seat(int seat_num)
 {
     if(seat[seat_num] != NULL)
     {
