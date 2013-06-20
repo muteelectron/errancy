@@ -78,21 +78,38 @@ void Poker::poker_round()
     cur_player = closer_seat(cur_player + 1);
     // PREFLOP
     trade_round();
+    if(highest_stake == big_blind)
+    {
+        highest_stake_player = closer_seat(cur_player + 1);
+        trade_round();
+    }
 
     // FLOP
     table_card[0] = pack->pop_top();
     table_card[1] = pack->pop_top();
     table_card[2] = pack->pop_top();
 
+    cur_player = closer_seat(closer_seat(closer_seat(button + 1) + 1) + 1);
+    highest_stake = 0;
+    highest_stake_player = cur_player;
+
     trade_round();
 
     // TURN
     table_card[3] = pack->pop_top();
 
+    cur_player = closer_seat(closer_seat(closer_seat(closer_seat(button + 1) + 1) + 1) + 1);
+    highest_stake = 0;
+    highest_stake_player = cur_player;
+
     trade_round();
 
     // RIVER
     table_card[4] = pack->pop_top();
+
+    cur_player = closer_seat(closer_seat(closer_seat(closer_seat(closer_seat(button + 1) + 1) + 1) + 1) + 1);
+    highest_stake = 0;
+    highest_stake_player = cur_player;
 
     trade_round();
 }
@@ -139,7 +156,7 @@ void Poker::trade_round()
             pack->push_bot(folded_card[1]);
         }
         cur_player = closer_seat(cur_player + 1);
-    }while(cur_player != button);
+    }while(cur_player != highest_stake_player);
 }
 
 
