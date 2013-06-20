@@ -27,13 +27,18 @@ private:
     void game_loop();
     void event();
 
+    void poker_round();
+    void trade_round();
+
     void OnExit();
 
     int num_of_seats;
     PokerPlayer** seat;
     Pack* pack;
+    Card** table_card;
 
     int user_seat;
+    int button;
 
     int closer_seat(int seat_num);
 };

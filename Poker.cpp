@@ -5,6 +5,8 @@ bool Poker::run(char* template_file_name)
 {
     std::ifstream input(template_file_name);
 
+    table_card = new Card*[5];
+
     running = true;
 
     boost::thread render_thread(&Poker::render, this);
@@ -50,8 +52,23 @@ void Poker::game_loop()
     while(running)
     {
         running_mtx.unlock();
+
+
+
         running_mtx.lock();
     }
+}
+
+
+void Poker::poker_round()
+{
+
+}
+
+
+void Poker::trade_round()
+{
+
 }
 
 
