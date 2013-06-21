@@ -35,24 +35,24 @@ public:
     Graphics(char* file_name);
     ~Graphics();
 
-    void render();
+    virtual void render();
 
 
-    int get_center_x();
-    int get_center_y();
-    int get_width();
-    int get_height();
-    double get_angle(AngleDirection angle_direction, AngleType angle_type);
-    int get_fps();
-    double get_frame_interval();
+    virtual int get_center_x();
+    virtual int get_center_y();
+    virtual int get_width();
+    virtual int get_height();
+    virtual double get_angle(AngleDirection angle_direction, AngleType angle_type);
+    virtual int get_fps();
+    virtual double get_frame_interval();
 
-    void set_center_x(int center_x_init);
-    void set_center_y(int center_y_init);
-    void set_width(int width_init);
-    void set_height(int height_init);
-    void set_angle(double angle_init, AngleDirection angle_direction, AngleType angle_type);
-    void set_fps(int fps_init);
-    void set_frame_interval_ms(double frame_interval_ms_init);
+    virtual void set_center_x(int center_x_init);
+    virtual void set_center_y(int center_y_init);
+    virtual void set_width(int width_init);
+    virtual void set_height(int height_init);
+    virtual void set_angle(double angle_init, AngleDirection angle_direction, AngleType angle_type);
+    virtual void set_fps(int fps_init);
+    virtual void set_frame_interval_ms(double frame_interval_ms_init);
 
 
 private:
