@@ -1,10 +1,43 @@
 #include "VisualCard.h"
 
-
+Graphics back("card_back.graphics");
 
 VisualCard::VisualCard(Card* card_init)
 {
     card = card_init;
+    char suit;
+    char value;
+    switch(card->suit)
+    {
+        case CLUBS:
+            suit = "C";
+            break;
+        case DIAMONDS:
+            suit = "D";
+            break;
+        case HEARTS:
+            suit = "H";
+            break;
+        case SPADES:
+            suit = "S";
+            break;
+    }
+    value = (char)card->value + 48;
+// ПЕРЕДЕЛАТЬ ЭТО БЕЗОБРАЗИЕ
+    char file_name[11];
+    file_name[0] = suit;
+    file_name[1] = value;
+    file_name[2] = '.';
+    file_name[3] = 'g';
+    file_name[4] = 'r';
+    file_name[5] = 'a';
+    file_name[6] = 'p';
+    file_name[7] = 'h';
+    file_name[8] = 'i';
+    file_name[9] = 'c';
+    file_name[10] = 's';
+
+    front = new Graphics(file_name);
 }
 
 
@@ -70,12 +103,14 @@ double VisualCard::get_angle(AngleDirection angle_direction, AngleType angle_typ
 void VisualCard::set_center_x(int center_x_init)
 {
     center_x = center_x_init;
+    front->set_center_x(center_x);
 }
 
 
 void VisualCard::set_center_y(int center_y_init)
 {
     center_y = center_y_init;
+    front->set_center_y(center_y);
 }
 
 
@@ -101,4 +136,6 @@ void VisualCard::set_angle(int angle_init, AngleDirection angle_direction, Angle
     {
         angle_ccw_rad = (angle_ccw_rad == 0 ? 0 : 2 - angle_ccw_rad);
     }
+
+    front->set_angle(angle_ccw_rad, CCW, RADIAN);
 }

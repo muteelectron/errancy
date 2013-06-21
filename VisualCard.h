@@ -27,7 +27,7 @@ private:
     Card* card;
 
     Graphics* front;
-    static Graphics* back;
+    static Graphics back;
 
     int center_x;
     int center_y;
