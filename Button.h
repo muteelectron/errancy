@@ -2,6 +2,10 @@
 #define BUTTON_H
 
 #include "Graphics.h"
+#include "Surface.h"
+#include <fstream>
+
+enum ButtonState{NORMAL, HOVERED, PRESSED};
 
 class Button
 {
@@ -19,6 +23,9 @@ private:
 
     void (*action)();
 
+    ButtonState button_state;
+
+    SDL_Surface* transparrency_map;
     Graphics* image;
     Graphics* image_hovered;
     Graphics* image_pressed;

@@ -7,6 +7,11 @@ class PokerBot : PokerPlayer
 {
 public:
 
+    PokerBot();
+    ~PokerBot();
+
+    int stake(int min_stake);
+    
 private:
 
 };
