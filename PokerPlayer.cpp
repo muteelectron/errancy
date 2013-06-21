@@ -26,13 +26,13 @@ int PokerPlayer::blind(int value)
     {
         // ALL IN
         int rest_money;
-        rest_money = cach;
+        rest_money = cash;
         cash = 0;
         return rest_money;
     }
     else
     {
-        cach -= value;
+        cash -= value;
         return value;
     }
 }

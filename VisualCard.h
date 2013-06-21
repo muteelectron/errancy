@@ -4,15 +4,15 @@
 #include "Card.h"
 #include "Graphics.h"
 
-class VisualCard : public Graphics
+class VisualCard
 {
 public:
 
     VisualCard(Card* card_init);
     ~VisualCard();
 
-    render_front();
-    render_back();
+    void render_front();
+    void render_back();
 
     int get_center_x();
     int get_center_y();

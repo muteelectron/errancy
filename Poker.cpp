@@ -25,7 +25,7 @@ bool Poker::run(char* template_file_name)
 
 void Poker::CleanUp()
 {
-    for(int i = 0; i < seat_amount; ++i)
+    for(int i = 0; i < num_of_seats; ++i)
     {
         delete[] seat[i];
     }
@@ -150,7 +150,7 @@ void Poker::trade_round()
         else if(stake == -1)
         {
             // FOLD
-            Card* folded_card[2];
+            Card** folded_card;
             folded_card = seat[cur_player]->fold();
             pack->push_bot(folded_card[0]);
             pack->push_bot(folded_card[1]);
@@ -195,7 +195,7 @@ int Poker::closer_seat(int seat_num)
     do
     {
         ++i;
-        if(i == seat_amount)
+        if(i == num_of_seats)
         {
             i = 0;
         }

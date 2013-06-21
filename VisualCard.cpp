@@ -10,19 +10,19 @@ VisualCard::VisualCard(Card* card_init)
     switch(card->suit)
     {
         case CLUBS:
-            suit = "C";
+            suit = 'C';
             break;
         case DIAMONDS:
-            suit = "D";
+            suit = 'D';
             break;
         case HEARTS:
-            suit = "H";
+            suit = 'H';
             break;
         case SPADES:
-            suit = "S";
+            suit = 'S';
             break;
     }
-    value = (char)card->value + 48;
+    value = (char)card->val + 48;
 // ПЕРЕДЕЛАТЬ ЭТО БЕЗОБРАЗИЕ
     char file_name[11];
     file_name[0] = suit;
@@ -59,7 +59,7 @@ void VisualCard::render_back()
     back.set_center_y(center_y);
     back.set_angle(angle_ccw_rad, CCW, RADIAN);
 
-    back->render();
+    back.render();
 }
 
 
@@ -114,7 +114,7 @@ void VisualCard::set_center_y(int center_y_init)
 }
 
 
-void VisualCard::set_angle(int angle_init, AngleDirection angle_direction, AngleType angle_type)
+void VisualCard::set_angle(double angle_init, AngleDirection angle_direction, AngleType angle_type)
 {
     if(angle_init < 0)
     {
