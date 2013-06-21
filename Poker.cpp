@@ -3,6 +3,7 @@
 
 bool Poker::run(char* template_file_name)
 {
+    Log::write("Poker::run start");
     std::ifstream input(template_file_name);
 
     table_card = new Card*[5];
@@ -17,7 +18,8 @@ bool Poker::run(char* template_file_name)
     game_loop_thread.join();
     event_thread.join();
 
-
+    CleanUp();
+    Log::write("Poker::run finish");
 
     return true;
 }
@@ -25,6 +27,7 @@ bool Poker::run(char* template_file_name)
 
 void Poker::CleanUp()
 {
+    Log::write("Poker::CleanUp start");
     for(int i = 0; i < num_of_seats; ++i)
     {
         delete[] seat[i];
@@ -32,17 +35,20 @@ void Poker::CleanUp()
     delete[] seat;
 
     delete[] pack;
+    Log::write("Poker::CleanUp finish");
 }
 
 
 void Poker::render()
 {
+    Log::write("Poker::render start");
     running_mtx.lock();
     while(running)
     {
         running_mtx.unlock();
         running_mtx.lock();
     }
+    Log::write("Poker::render finish");
 }
 
 
@@ -162,6 +168,7 @@ void Poker::trade_round()
 
 void Poker::event()
 {
+    Log::write("Poker::event start");
     SDL_Event event;
     running_mtx.lock();
     while(running)
@@ -171,14 +178,17 @@ void Poker::event()
         Event::OnEvent(&event);
         running_mtx.lock();
     }
+    Log::write("Poker::event finish");
 }
 
 
 void Poker::OnExit()
 {
+    Log::write("Poker::OnExit start");
     running_mtx.lock();
     running = false;
     running_mtx.unlock();
+    Log::write("Poker::OnExit finish");
 }
 
 

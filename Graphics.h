@@ -44,7 +44,7 @@ public:
     virtual int get_height();
     virtual double get_angle(AngleDirection angle_direction, AngleType angle_type);
     virtual int get_fps();
-    virtual double get_frame_interval();
+    virtual unsigned int get_frame_interval_ms();
 
     virtual void set_center_x(int center_x_init);
     virtual void set_center_y(int center_y_init);
@@ -52,7 +52,7 @@ public:
     virtual void set_height(int height_init);
     virtual void set_angle(double angle_init, AngleDirection angle_direction, AngleType angle_type);
     virtual void set_fps(int fps_init);
-    virtual void set_frame_interval_ms(double frame_interval_ms_init);
+    virtual void set_frame_interval_ms(unsigned int frame_interval_ms_init);
 
 
 private:

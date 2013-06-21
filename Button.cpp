@@ -41,7 +41,7 @@ bool Button::press(int x, int y)
 }
 
 
-void render()
+void Button::render()
 {
     switch(button_state)
     {

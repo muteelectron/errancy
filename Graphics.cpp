@@ -165,6 +165,17 @@ double Graphics::get_angle(AngleDirection angle_direction, AngleType angle_type)
 }
 
 
+int Graphics::get_fps()
+{
+    return fps;
+}
+
+
+unsigned int Graphics::get_frame_interval_ms()
+{
+    return frame_interval_ms;
+}
+
 
 void Graphics::set_center_x(int center_x_init)
 {
@@ -229,7 +240,7 @@ void Graphics::set_fps(int fps_init)
 }
 
 
-void Graphics::set_frame_interval_ms(double frame_interval_ms_init)
+void Graphics::set_frame_interval_ms(unsigned int frame_interval_ms_init)
 {
     if(frame_interval_ms_init > 0)
     {

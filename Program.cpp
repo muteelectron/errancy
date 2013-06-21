@@ -3,7 +3,7 @@
 
 bool Program::run()
 {
-    Log::write("Program has started");
+    Log::write("Program::run start");
 
     if(!init())
     {
@@ -12,11 +12,13 @@ bool Program::run()
 
     splashscreen = new SplashScreen;
     return splashscreen->run();
+    Log::write("Program::run finish");
 }
 
 
 int Program::init()
 {
+    Log::write("Program::init start");
     if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {
         Log::write("SDL initialization error");
@@ -48,6 +50,6 @@ int Program::init()
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-
+Log::write("Program::init finish");
     return true;
 }

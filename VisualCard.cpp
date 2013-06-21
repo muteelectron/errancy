@@ -1,6 +1,6 @@
 #include "VisualCard.h"
 
-Graphics back("card_back.graphics");
+Graphics VisualCard::back("card_back.graphics");
 
 VisualCard::VisualCard(Card* card_init)
 {
