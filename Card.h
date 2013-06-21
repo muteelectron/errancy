@@ -1,7 +1,7 @@
 #ifndef CARD_H
 #define CARD_H
 
-enum Suit{SPADES, HEARTS, DIAMONDS, CLUBS};
+enum Suit{CLUBS, DIAMONDS, HEARTS, SPADES};
 
 struct Card
 {
