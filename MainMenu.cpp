@@ -6,32 +6,39 @@ bool MainMenu::run()
     Log::write("MainMenu::run start");
     running = true;
 
-    boost::thread update_thread(&MainMenu::update, this);
-    boost::thread render_thread(&MainMenu::render, this);
-    boost::thread event_thread(&MainMenu::event, this);
+    boost::thread* update_thread(&MainMenu::update, this);
+    boost::thread* render_thread(&MainMenu::render, this);
+    boost::thread* event_thread(&MainMenu::event, this);
 
     while(true)
     {
-        nextstate = NULL;
+        next_state = NULL;
 
-        update_thread.join();
-        render_thread.join();
-        event_thread.join();
-        
+        update_thread = new boost::thread(&MainMenu::update, this);
+        render_thread = new boost::thread(&MainMenu::render, this);
+         event_thread = new boost::thread(&MainMenu::event, this);
+
+        update_thread->join();
+        render_thread->join();
+         event_thread->join();
+
+        delete update_thread;
+        delete render_thread;
+        delete  event_thread;
+
         if(nextstate != NULL)
         {
             nextstate->run();
         }
         else
         {
+            Log::write("MainMenu::run finish");
             return true;
         }
 
-        running = true;
-
-
+        
     }
-    Log::write("MainMenu::run finish");
+
     return true;
 }
 
@@ -124,6 +131,7 @@ void MainMenu::OnExit()
 {
     Log::write("MainMenu::OnExit start");
     running_mtx.lock();
+    next_state = NULL;
     running = false;
     running_mtx.unlock();
     Log::write("MainMenu::OnExit finish");
