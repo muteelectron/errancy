@@ -10,6 +10,9 @@ bool Poker::run(char* template_file_name)
     pack = new Pack("card_back.graphics");
 
     Card* card_temp;
+    Graphics* card_front_temp;
+    Graphics* card_back;
+    card_back = new Graphics("card_back.graphics")
     for(int i = 2; i <= 14; ++i)
     {
         pack->push_bot(card_temp);

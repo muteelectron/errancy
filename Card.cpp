@@ -10,7 +10,7 @@ Card::Card(CardSuit suit_init, int value_init, Graphics* front_init, Graphics* b
 
 Card::~Card()
 {
-
+    delete front;
 }
 
 
