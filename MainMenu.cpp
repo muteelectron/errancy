@@ -6,9 +6,9 @@ bool MainMenu::run()
     Log::write("MainMenu::run start");
     running = true;
 
-    boost::thread* update_thread(&MainMenu::update, this);
-    boost::thread* render_thread(&MainMenu::render, this);
-    boost::thread* event_thread(&MainMenu::event, this);
+    boost::thread* update_thread;
+    boost::thread* render_thread;
+    boost::thread* event_thread;
 
     while(true)
     {
@@ -26,9 +26,9 @@ bool MainMenu::run()
         delete render_thread;
         delete  event_thread;
 
-        if(nextstate != NULL)
+        if(next_state != NULL)
         {
-            nextstate->run();
+            next_state->run();
         }
         else
         {

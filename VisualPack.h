@@ -4,7 +4,7 @@
 #include "Pack.h"
 #include "Graphics.h"
 
-class VisualPack : public Pack : public Graphics
+class VisualPack : public Pack, public Graphics
 {
 public:
 
