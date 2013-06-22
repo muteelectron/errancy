@@ -20,7 +20,7 @@ bool Poker::run(char* template_file_name)
     event_thread.join();
 
     CleanUp();
-    
+
     Log::write("Poker::run finish");
 
     return true;
