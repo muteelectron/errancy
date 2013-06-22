@@ -2,6 +2,7 @@
 #define CARD_H
 
 #include "Graphics.h"
+
 // КОСТЫЛИ, УТЕЧКИ ПАМЯТИ И МНОГОЕ ДРУГОЕ
 
 enum CardSuit{CLUBS, DIAMONS, HEARTS, SPADES};

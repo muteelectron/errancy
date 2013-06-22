@@ -9,6 +9,13 @@ bool Poker::run(char* template_file_name)
     table_card = new Card*[5];
     pack = new Pack("card_back.graphics");
 
+    Card* card_temp;
+    for(int i = 2; i <= 14; ++i)
+    {
+        pack->push_bot(card_temp);
+    }
+    pack->shuffle();
+
     running = true;
 
     boost::thread render_thread(&Poker::render, this);
