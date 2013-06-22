@@ -14,19 +14,20 @@ Card::~Card()
 }
 
 
-void Card::render_front()
+void Card::render()
 {
-    front->render();
-}
+    if(opened)
+    {
+        front->render();
+    }
+    else
+    {
+        back->set_center_x(center_x);
+        back->set_center_y(center_y);
+        back->set_angle(angle_ccw_rad, CCW, RADIAN);
 
-
-void Card::render_back()
-{
-    back->set_center_x(center_x);
-    back->set_center_y(center_y);
-    back->set_angle(angle_ccw_rad, CCW, RADIAN);
-
-    back->render();
+        back->render();
+    }
 }
 
 
@@ -75,6 +76,18 @@ CardSuit Card::get_suit()
 int Card::get_value()
 {
     return value;
+}
+
+
+bool Card::get_opened()
+{
+    return opened;
+}
+
+
+void Card::set_opened(bool opened_init)
+{
+    opened = opened_init;
 }
 
 
