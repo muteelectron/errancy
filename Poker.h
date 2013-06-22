@@ -4,7 +4,9 @@
 #include "ProgramState.h"
 #include "PokerPlayer.h"
 #include "PokerBot.h"
-#include "Pack.h"
+#include "VisualPack.h"
+#include "Graphics.h"
+#include "VisualCard.h"
 #include <boost/thread.hpp>
 #include <boost/bind.hpp>
 #include <fstream>
@@ -35,8 +37,8 @@ private:
     int num_of_seats;
     int num_of_players;
     PokerPlayer** seat;
-    Pack* pack;
-    Card** table_card;
+    VisualPack* pack;
+    VisualCard** table_card;
 
     int small_blind;
     int big_blind;

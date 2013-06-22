@@ -15,7 +15,6 @@ public:
     void push_top(Card* card);
     void push_bot(Card* card);
 
-
 private:
 
     std::deque<Card*> pack_card;

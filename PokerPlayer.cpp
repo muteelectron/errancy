@@ -14,10 +14,10 @@ PokerPlayer::~PokerPlayer()
 }
 
 
-Card** PokerPlayer::fold()
-{
-    return hand;
-}
+void PokerPlayer::render()
+ {
+
+ }
 
 
 int PokerPlayer::blind(int value)
@@ -52,4 +52,10 @@ void PokerPlayer::pick_card(Card* card)
     {
         Log::write("");
     }
+}
+
+
+Card** PokerPlayer::fold()
+{
+    return hand;
 }

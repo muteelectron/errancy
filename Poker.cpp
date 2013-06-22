@@ -6,7 +6,7 @@ bool Poker::run(char* template_file_name)
     Log::write("Poker::run start");
     std::ifstream input(template_file_name);
 
-    table_card = new Card*[5];
+    table_card = new VisualCard*[5];
 
     running = true;
 
@@ -46,6 +46,15 @@ void Poker::render()
     while(running)
     {
         running_mtx.unlock();
+
+        for(int i = 0; i < num_of_seats; ++i)
+        {
+            if(seat[i] != NULL)
+            {
+                seat[i]->render();
+            }
+        }
+
         running_mtx.lock();
     }
     Log::write("Poker::render finish");

@@ -11,10 +11,14 @@ public:
 
     PokerPlayer();
     ~PokerPlayer();
-    Card** fold();
+
+    void render();
+
     virtual int stake(int min_stake) = 0;
     int blind(int value);
+
     void pick_card(Card* card);
+    Card** fold();
 
 private:
 
