@@ -46,6 +46,7 @@ void Poker::CleanUp()
 void Poker::render()
 {
     Log::write("Poker::render start");
+
     running_mtx.lock();
     while(running)
     {
@@ -58,9 +59,16 @@ void Poker::render()
                 seat[i]->render();
             }
         }
+        int i;
+        i = 0;
+        while(table_card[i] != NULL && i < 5)
+        {
+            table_card[i]->render();
+        }
 
         running_mtx.lock();
     }
+
     Log::write("Poker::render finish");
 }
 

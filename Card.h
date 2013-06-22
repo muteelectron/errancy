@@ -16,6 +16,9 @@ public:
     void render_front();
     void render_back();
 
+    CardSuit get_suit();
+    int get_value();
+
     int get_center_x();
     int get_center_y();
     double get_angle(AngleDirection angle_direction, AngleType angle_type);
@@ -33,8 +36,8 @@ private:
     int center_y;
     int angle_ccw_rad;
 
-    CardSuit suit;
-    int value;
+    const CardSuit suit;
+    const int value;
 };
 
 #endif

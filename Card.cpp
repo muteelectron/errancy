@@ -1,6 +1,7 @@
 #include "Card.h"
 
-Card::Card(Graphics* front_init, Graphics* back_init)
+Card::Card(CardSuit suit_init, int value_init, Graphics* front_init, Graphics* back_init)
+: suit(suit_init), value(value_init)
 {
     front = front_init;
     back  = back_init;
@@ -64,6 +65,17 @@ double Card::get_angle(AngleDirection angle_direction, AngleType angle_type)
     }
 }
 
+
+CardSuit Card::get_suit()
+{
+    return suit;
+}
+
+
+int Card::get_value()
+{
+    return value;
+}
 
 
 void Card::set_center_x(int center_x_init)
