@@ -3,11 +3,14 @@
 
 #include "Graphics.h"
 // КОСТЫЛИ, УТЕЧКИ ПАМЯТИ И МНОГОЕ ДРУГОЕ
+
+enum CardSuit{CLUBS, DIAMONS, HEARTS, SPADES};
+
 class Card
 {
 public:
 
-    Card(Graphics* front_init, Graphics* back_init);
+    Card(CardSuit suit_init, int value_init, Graphics* front_init, Graphics* back_init);
     ~Card();
 
     void render_front();
@@ -29,6 +32,9 @@ private:
     int center_x;
     int center_y;
     int angle_ccw_rad;
+
+    CardSuit suit;
+    int value;
 };
 
 #endif

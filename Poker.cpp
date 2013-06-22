@@ -6,8 +6,8 @@ bool Poker::run(char* template_file_name)
     Log::write("Poker::run start");
     std::ifstream input(template_file_name);
 
-    table_card = new VisualCard*[5];
-    pack = new VisualPack("card_back.graphics");
+    table_card = new Card*[5];
+    pack = new Pack("card_back.graphics");
 
     running = true;
 
