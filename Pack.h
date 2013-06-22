@@ -8,7 +8,7 @@
 class Pack
 {
 public: 
-    
+
     void shuffle();
 
     Card* pop_top();

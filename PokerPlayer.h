@@ -1,7 +1,7 @@
 #ifndef POKERPLAYER_H
 #define POKERPLAYER_H
 
-#include "Card.h"
+#include "VisualCard.h"
 #include <string>
 #include "Log.h"
 
@@ -18,11 +18,11 @@ public:
     int blind(int value);
 
     void pick_card(Card* card);
-    Card** fold();
+    VisualCard** fold();
 
 private:
 
-    Card** hand;
+    VisualCard** hand;
     std::string name;
     int cash;
 };
