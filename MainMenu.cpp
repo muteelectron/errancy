@@ -72,7 +72,9 @@ void MainMenu::render()
 void MainMenu::event()
 {
     Log::write("MainMenu::event start");
+
     SDL_Event event;
+
     running_mtx.lock();
     while(running)
     {
@@ -81,6 +83,7 @@ void MainMenu::event()
         Event::OnEvent(&event);
         running_mtx.lock();
     }
+
     Log::write("MainMenu::event finish");
 }
 
@@ -130,9 +133,11 @@ void MainMenu::OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode)
 void MainMenu::OnExit()
 {
     Log::write("MainMenu::OnExit start");
+
     running_mtx.lock();
     next_state = NULL;
     running = false;
     running_mtx.unlock();
+    
     Log::write("MainMenu::OnExit finish");
 }

@@ -24,7 +24,9 @@ Button::Button(char* file_name, void (*foo)())
 
 Button::~Button()
 {
-
+    SDL_FreeSurface(transparrency_map);
+    delete image;
+    delete image_hovered;
 }
 
 
