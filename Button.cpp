@@ -20,7 +20,6 @@ Button::Button(char* file_name, void (*foo)())
     transparrency_map = Surface::OnLoad(transparrency_map_file_name);
     image = new Graphics(image_file_name);
     image_hovered = new Graphics(image_hovered_file_name);
-    image_pressed = new Graphics(image_pressed_file_name);
 }
 
 Button::~Button()
@@ -52,7 +51,6 @@ void Button::render()
             image_hovered->render();
             break;
         case PRESSED:
-            image_pressed->render();
             break;
     }
 }

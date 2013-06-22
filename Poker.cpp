@@ -7,6 +7,7 @@ bool Poker::run(char* template_file_name)
     std::ifstream input(template_file_name);
 
     table_card = new VisualCard*[5];
+    pack = new VisualPack("card_back.graphics");
 
     running = true;
 
@@ -19,6 +20,7 @@ bool Poker::run(char* template_file_name)
     event_thread.join();
 
     CleanUp();
+    
     Log::write("Poker::run finish");
 
     return true;
@@ -28,6 +30,7 @@ bool Poker::run(char* template_file_name)
 void Poker::CleanUp()
 {
     Log::write("Poker::CleanUp start");
+
     for(int i = 0; i < num_of_seats; ++i)
     {
         delete[] seat[i];
@@ -35,6 +38,7 @@ void Poker::CleanUp()
     delete[] seat;
 
     delete[] pack;
+
     Log::write("Poker::CleanUp finish");
 }
 

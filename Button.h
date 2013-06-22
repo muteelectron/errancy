@@ -28,7 +28,6 @@ private:
     SDL_Surface* transparrency_map;
     Graphics* image;
     Graphics* image_hovered;
-    Graphics* image_pressed;
 
     int image_x;
     int image_y;
