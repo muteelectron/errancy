@@ -12,7 +12,7 @@ bool Poker::run(char* template_file_name)
     Card* card_temp;
     Graphics* card_front_temp;
     Graphics* card_back;
-    card_back = new Graphics("card_back.graphics")
+    card_back = new Graphics("card_back.graphics");
     for(int i = 2; i <= 14; ++i)
     {
         pack->push_bot(card_temp);
@@ -105,6 +105,18 @@ void Poker::poker_round()
 {
     bank = 0;
 
+    for(int i = 0; i < 2; ++i)
+    {
+        for(int j = 0; j < num_of_seats; ++j)
+        {
+            if(seat[j] != NULL)
+            {
+                seat[j]->pick_card(pack->pop_top());
+            }
+        }
+    }
+
+    // BLINDS
     cur_player = closer_seat(button + 1);
     seat[cur_player]->blind(small_blind);
     cur_player = closer_seat(cur_player + 1);

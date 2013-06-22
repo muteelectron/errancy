@@ -8,7 +8,6 @@
 #include "Graphics.h"
 #include "Card.h"
 #include <boost/thread.hpp>
-#include <boost/bind.hpp>
 #include <fstream>
 #include "Log.h"
 

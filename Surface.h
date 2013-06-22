@@ -13,9 +13,6 @@
 
 #endif
 
-#include <iostream>
-using namespace std;
-
 class Surface
 {
    public:
