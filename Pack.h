@@ -1,13 +1,16 @@
 #ifndef PACK_H
 #define PACK_H
 
+#include "Graphics.h"
 #include "Card.h"
 #include <deque>
 #include <algorithm>
 
-class Pack
+class Pack : public Graphics
 {
-public: 
+public:
+
+    Pack(char* image_file_name);
 
     void shuffle();
 

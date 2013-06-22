@@ -1,6 +1,13 @@
 #include "Pack.h"
 
 
+Pack::Pack(char* file_name)
+: Graphics(file_name)
+{
+
+}
+
+
 void Pack::shuffle()
 {
     std::random_shuffle(pack_card.begin(), pack_card.end());
