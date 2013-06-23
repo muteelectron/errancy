@@ -1,10 +1,13 @@
 #include "Poker.h"
 
 
-bool Poker::run(char* template_file_name)
+bool Poker::run()
 {
     Log::write("Poker::run start");
-    std::ifstream input(template_file_name);
+    std::ifstream save_file_ptr("save_file_name.txt");
+    char* save_file_name;
+    save_file_ptr >> save_file_name; 
+    std::ifstream save_file(save_file_name);
 
     table_card = new Card*[5];
     pack = new Pack("card_back.graphics");

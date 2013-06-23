@@ -15,7 +15,7 @@ class Poker : public ProgramState
 {
 public:
 
-    bool run(char* template_file_name);
+    bool run();
 
     void CleanUp();
 
