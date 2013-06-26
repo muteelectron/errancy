@@ -33,3 +33,9 @@ void Pack::push_bot(Card* card)
 {
     pack_card.push_back(card);
 }
+
+
+int Pack::get_num_of_cards()
+{
+    return pack_card.size();
+}

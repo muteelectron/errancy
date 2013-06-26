@@ -18,6 +18,8 @@ public:
     void push_top(Card* card);
     void push_bot(Card* card);
 
+    int get_num_of_cards();
+
 private:
 
     std::deque<Card*> pack_card;

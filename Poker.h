@@ -31,9 +31,12 @@ private:
     void poker_round();
     void trade_round();
 
+    void save_game(char* save_file_name);
+    void load_game(char* load_file_name);
+
     void OnExit();
 
-    int num_of_seats;
+    const int num_of_seats;
     int num_of_players;
     PokerPlayer** seat;
     Pack* pack;

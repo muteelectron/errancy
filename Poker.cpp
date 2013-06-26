@@ -2,12 +2,11 @@
 
 
 bool Poker::run()
+: num_of_seats(10)
 {
     Log::write("Poker::run start");
-    std::ifstream save_file_ptr("save_file_name.txt");
-    char* save_file_name;
-    save_file_ptr >> save_file_name; 
-    std::ifstream save_file(save_file_name);
+    
+    load_game("");
 
     table_card = new Card*[5];
     pack = new Pack("card_back.graphics");
@@ -225,6 +224,56 @@ void Poker::event()
         running_mtx.lock();
     }
     Log::write("Poker::event finish");
+}
+
+
+void Poker::save_game(char* save_file_name)
+{
+
+}
+
+
+void Poker::load_game(char* load_file_name)
+{
+    ifstream load_file(load_file_name);
+
+    bool* seat_taken;
+    seat_taken = new bool[num_of_seats];
+
+    load_file.read((char*)&user_seat, sizeof(int));
+
+    num_of_players = 0;
+    for(int i = 0; i < num_of_seats; ++i)
+    {
+        if(seat_taken[i])
+        {
+            ++num_of_players;
+            if(i != user_seat)
+            {
+                load_file.read((char*)seat[i], sizeof(PokerBot));
+            }
+            else
+            {
+                load_file,read((char*)seat[i], sizeof(PokerPlayer));
+            }
+        }
+        else
+        {
+            seat[i] = NULL;
+        }
+    }
+
+    int cards_in_pack;
+    Card* card_temp;
+    load_file.read((char*)cards_in_pack, sizeof(int));
+    for(int i = 0; i < cards_in_pack; ++i)
+    {
+        load_file.read((char*)card_temp, sizeof(Card));
+        pack.push_bot(card_temp);
+    }
+
+    load_file.read((char*)&small_blind, sizeof(int));
+    load_file.read((char*)&big_blind, sizeof(int));
 }
 
 
