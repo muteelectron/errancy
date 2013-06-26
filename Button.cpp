@@ -43,8 +43,8 @@ bool Button::mouse_event(int click_x, int click_y, bool clicked)
         x = click_x * SDL_GetVideoSurface()->w;
         y = click_y * SDL_GetVideoSurface()->h;
 
-        pixel =  *(Uint32*)((Uint8*)transparency_map->pixels + 
-                   img->format->BytesPerPixel * x + transparency_map->pitch * y);
+        pixel =  *(Uint32*)((Uint8*)transparency_map->pixels +
+                   transparency_map->format->BytesPerPixel * x + transparency_map->pitch * y);
 
         Uint8 r;
         Uint8 g;
@@ -122,7 +122,7 @@ void Button::set_center_x(int x_init)
 
 int Button::get_center_y()
 {
-    return image->get_center_y;
+    return image->get_center_y();
 }
 
 
@@ -135,12 +135,12 @@ void Button::set_center_y(int y_init)
 
 double Button::get_angle(AngleDirection angle_direction, AngleType angle_type)
 {
-    return image->get_angle(AngleDirection angle_direction, AngleType angle_type);
+    return image->get_angle(angle_direction, angle_type);
 }
 
 
 void Button::set_angle(double angle_init, AngleDirection angle_direction, AngleType angle_type)
 {
-    image->set_angle(double angle_init, AngleDirection angle_direction, AngleType angle_type);
-    image_hovered->set_angle(double angle_init, AngleDirection angle_direction, AngleType angle_type);
+    image->set_angle(angle_init, angle_direction, angle_type);
+    image_hovered->set_angle(angle_init, angle_direction, angle_type);
 }
