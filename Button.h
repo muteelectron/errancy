@@ -4,6 +4,7 @@
 #include "Graphics.h"
 #include "Surface.h"
 #include <fstream>
+#include <cmath>
 
 enum ButtonState{NORMAL, HOVERED, PRESSED};
 
@@ -14,23 +15,29 @@ public:
     Button(char* file_name, void (*foo)());
     ~Button();
 
-    bool hover(int x, int y);
-    bool press(int x, int y);
+    bool mouse_event(int click_x, int click_y, bool clicked);
 
     void render();
+
+    void set_state(ButtonState state_init);
+    ButtonState get_state();
+
+    int get_center_x();
+    void set_center_x(int x_init);
+    int get_center_y();
+    void set_center_y(int y_init);
+    double get_angle(AngleDirection angle_direction, AngleType angle_type);
+    void set_angle(double angle_init, AngleDirection angle_direction, AngleType angle_type);
 
 private:
 
     void (*action)();
 
-    ButtonState button_state;
+    ButtonState state;
 
-    SDL_Surface* transparrency_map;
+    SDL_Surface* transparency_map;
     Graphics* image;
     Graphics* image_hovered;
-
-    int image_x;
-    int image_y;
 };
 
 #endif
