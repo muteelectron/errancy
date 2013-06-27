@@ -9,11 +9,14 @@
 #include "Card.h"
 #include <boost/thread.hpp>
 #include <fstream>
+#include <stream>
 #include "Log.h"
 
 class Poker : public ProgramState
 {
 public:
+
+    Poker();
 
     bool run();
 
@@ -33,6 +36,8 @@ private:
 
     void save_game(char* save_file_name);
     void load_game(char* load_file_name);
+
+    void load_template_game();
 
     void OnExit();
 

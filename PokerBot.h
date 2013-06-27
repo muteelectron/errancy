@@ -3,7 +3,7 @@
 
 #include "PokerPlayer.h"
 
-class PokerBot : PokerPlayer
+class PokerBot : public PokerPlayer
 {
 public:
 

@@ -1,25 +1,29 @@
 #include "Poker.h"
 
 
-bool Poker::run()
+Poker::Poker()
 : num_of_seats(10)
 {
+
+}
+
+
+bool Poker::run()
+{
     Log::write("Poker::run start");
-    
-    load_game("");
 
-    table_card = new Card*[5];
-    pack = new Pack("card_back.graphics");
-
-    Card* card_temp;
-    Graphics* card_front_temp;
-    Graphics* card_back;
-    card_back = new Graphics("card_back.graphics");
-    for(int i = 2; i <= 14; ++i)
+    if(std::ifstream("choosen_save.txt") != NULL)
     {
-        pack->push_bot(card_temp);
+        std::ifstream path_to_save("choosen_save.txt");
+        char* save_file_name;
+        path_to_save >> save_file_name;
+
+        load_game(save_file_name);
     }
-    pack->shuffle();
+    else
+    {
+        load_template_game();
+    }
 
     running = true;
 
@@ -140,7 +144,8 @@ void Poker::poker_round()
     table_card[1] = pack->pop_top();
     table_card[2] = pack->pop_top();
 
-    cur_player = closer_seat(closer_seat(closer_seat(button + 1) + 1) + 1);
+    cur_player = closer_seat(closer_seat(closer_seat(button + 1)
+                 + 1) + 1);
     highest_stake = 0;
     highest_stake_player = cur_player;
 
@@ -149,7 +154,8 @@ void Poker::poker_round()
     // TURN
     table_card[3] = pack->pop_top();
 
-    cur_player = closer_seat(closer_seat(closer_seat(closer_seat(button + 1) + 1) + 1) + 1);
+    cur_player = closer_seat(closer_seat(closer_seat(closer_seat
+                 (button + 1) + 1) + 1) + 1);
     highest_stake = 0;
     highest_stake_player = cur_player;
 
@@ -158,7 +164,8 @@ void Poker::poker_round()
     // RIVER
     table_card[4] = pack->pop_top();
 
-    cur_player = closer_seat(closer_seat(closer_seat(closer_seat(closer_seat(button + 1) + 1) + 1) + 1) + 1);
+    cur_player = closer_seat(closer_seat(closer_seat(closer_seat
+                 (closer_seat(button + 1) + 1) + 1) + 1) + 1);
     highest_stake = 0;
     highest_stake_player = cur_player;
 
@@ -235,7 +242,13 @@ void Poker::save_game(char* save_file_name)
 
 void Poker::load_game(char* load_file_name)
 {
+    // UNDONE
     ifstream load_file(load_file_name);
+
+    if()
+    {
+
+    }
 
     bool* seat_taken;
     seat_taken = new bool[num_of_seats];
@@ -254,7 +267,7 @@ void Poker::load_game(char* load_file_name)
             }
             else
             {
-                load_file,read((char*)seat[i], sizeof(PokerPlayer));
+                load_file.read((char*)seat[i], sizeof(PokerPlayer));
             }
         }
         else
@@ -268,12 +281,72 @@ void Poker::load_game(char* load_file_name)
     load_file.read((char*)cards_in_pack, sizeof(int));
     for(int i = 0; i < cards_in_pack; ++i)
     {
+        card_temp = new Card();
         load_file.read((char*)card_temp, sizeof(Card));
-        pack.push_bot(card_temp);
+        pack->push_bot(card_temp);
     }
 
     load_file.read((char*)&small_blind, sizeof(int));
     load_file.read((char*)&big_blind, sizeof(int));
+}
+
+
+void Poker::load_template_game()
+{
+    num_of_players = 10;
+    user_seat = 0;
+
+    seat = new PokerPlayer*[num_of_players];
+
+    seat[user_seat] = new PokerPlayer();
+
+    for(int i = 1; i < num_of_players; ++i)
+    {
+        seat[i] = new PokerBot();
+    }
+
+    pack = new Pack("card_back.graphics");
+
+    Card* card_temp;
+    Graphics* card_back;
+    Graphics* card_front;
+    card_front = new Graphics("card_back.graphics");
+    string file_name_temp;
+    file_name_temp = "X00";
+    file_name_temp += ".graphics";
+    for(int i = 2; i <= 14; ++i)
+    {
+        file_name_temp[0] = 'C';
+        file_name_temp[1] = i / 10;
+        file_name_temp[2] = i % 10;
+        card_front = new Graphics(file_name_temp);
+        card_temp = new Card(CLUBS, i, card_front, card_back);
+        pack->push_bot(card_temp);
+        file_name_temp[0] = 'D';
+        file_name_temp[1] = i / 10;
+        file_name_temp[2] = i % 10;
+        card_front = new Graphics(file_name_temp);
+        card_temp = new Card(DIAMONDS, i, card_front, card_back);
+        pack->push_bot(card_temp);
+        file_name_temp[0] = 'H';
+        file_name_temp[1] = i / 10;
+        file_name_temp[2] = i % 10;
+        card_front = new Graphics(file_name_temp);
+        card_temp = new Card(HEARTS, i, card_front, card_back);
+        pack->push_bot(card_temp);
+        file_name_temp[0] = 'S';
+        file_name_temp[1] = i / 10;
+        file_name_temp[2] = i % 10;
+        card_front = new Graphics(file_name_temp);
+        card_temp = new Card(SPADES, i, card_front, card_back);
+        pack->push_bot(card_temp);
+    }
+    pack->shuffle();
+
+    table_card = new Card*[5];
+    small_blind = 2;
+    big_blind = 4;
+    button = 0;
 }
 
 

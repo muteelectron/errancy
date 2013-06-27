@@ -1,17 +1,17 @@
 #include "Button.h"
 
-Button::Button(char* file_name, void (*foo)())
+Button::Button(std::string file_name, void (*foo)())
 {
     state = NORMAL;
 
     action = foo;
 
     char* transparency_map_file_name;
-    char* image_file_name;
-    char* image_hovered_file_name;
-    char* image_pressed_file_name;
+    std::string image_file_name;
+    std::string image_hovered_file_name;
+    std::string image_pressed_file_name;
 
-    std::ifstream input(file_name);
+    std::ifstream input(file_name.c_str());
     input >> transparency_map_file_name;
     input >> image_file_name;
     input >> image_hovered_file_name;

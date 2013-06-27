@@ -20,7 +20,7 @@
 
 #include <cmath>
 #include <fstream>
-using std::ifstream;
+#include <string>
 
 
 enum GraphicsType{STATIC, ANIMATED};
@@ -32,7 +32,7 @@ class Graphics
 {
 public:
 
-    Graphics(char* file_name);
+    Graphics(std::string file_name);
     ~Graphics();
 
     virtual void render();

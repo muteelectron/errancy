@@ -12,9 +12,9 @@
 // frames per second(only if graphics is animated)
 
 
-Graphics::Graphics(char* file_name)
+Graphics::Graphics(std::string file_name)
 {
-    ifstream input(file_name);
+    std::ifstream input(file_name.c_str());
 
     char* graphics_type_init;
     char* graphics_file_name;

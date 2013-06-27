@@ -5,7 +5,7 @@
 
 // КОСТЫЛИ, УТЕЧКИ ПАМЯТИ И МНОГОЕ ДРУГОЕ
 
-enum CardSuit{CLUBS, DIAMONS, HEARTS, SPADES};
+enum CardSuit{CLUBS, DIAMONDS, HEARTS, SPADES};
 
 class Card
 {

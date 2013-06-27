@@ -12,7 +12,7 @@ class Button
 {
 public:
 
-    Button(char* file_name, void (*foo)());
+    Button(std::string file_name, void (*foo)());
     ~Button();
 
     bool mouse_event(int click_x, int click_y, bool clicked);
