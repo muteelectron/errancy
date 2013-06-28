@@ -4,6 +4,11 @@
 bool MainMenu::run()
 {
     Log::write("MainMenu::run start");
+
+    boost::function<void()> but_action_init;
+    but_action_init = boost::bind(&MainMenu::poker_run, this);
+    poker_run_but = new Button("poker_run.button", but_action_init);
+
     running = true;
 
     boost::thread* update_thread;
@@ -140,4 +145,15 @@ void MainMenu::OnExit()
     running_mtx.unlock();
     
     Log::write("MainMenu::OnExit finish");
+}
+
+
+void MainMenu::poker_run()
+{
+    running_mtx.lock();
+
+    next_state = new Poker();
+    running = false;
+
+    running_mtx.unlock();
 }

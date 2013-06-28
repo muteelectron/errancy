@@ -5,6 +5,8 @@
 #include "Surface.h"
 #include <fstream>
 #include <cmath>
+#include <boost/bind.hpp>
+#include <boost/function.hpp>
 
 enum ButtonState{NORMAL, HOVERED, PRESSED};
 
@@ -12,7 +14,7 @@ class Button
 {
 public:
 
-    Button(std::string file_name, void (*foo)());
+    Button(std::string file_name, boost::function<void()> action_init);
     ~Button();
 
     bool mouse_event(int click_x, int click_y, bool clicked);
@@ -31,7 +33,7 @@ public:
 
 private:
 
-    void (*action)();
+    boost::function<void()> action;
 
     ButtonState state;
 

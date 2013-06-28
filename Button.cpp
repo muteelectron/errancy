@@ -1,10 +1,10 @@
 #include "Button.h"
 
-Button::Button(std::string file_name, void (*foo)())
+Button::Button(std::string file_name, boost::function<void()> action_init)
 {
     state = NORMAL;
 
-    action = foo;
+    action = action_init;
 
     char* transparency_map_file_name;
     std::string image_file_name;

@@ -3,7 +3,10 @@
 
 #include "ProgramState.h"
 #include "Poker.h"
+#include "Button.h"
 #include <boost/thread.hpp>
+#include <boost/bind.hpp>
+#include <boost/function.hpp>
 #include "Log.h"
 
 class MainMenu : public ProgramState
@@ -31,6 +34,10 @@ private:
     void OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode);
     void OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode);
     void OnExit();
+
+    void poker_run();
+
+    Button poker_run_but;
 };
 
 #endif
