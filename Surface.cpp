@@ -2,11 +2,11 @@
 #include <fstream>
 
 
-SDL_Surface *Surface::OnLoad(char *File)
+SDL_Surface *Surface::OnLoad(std::string File)
 {
     SDL_Surface* Surf_Temp = NULL;
     SDL_Surface* Surf_Return = NULL;
-    if((Surf_Temp = IMG_Load(File)) == NULL)
+    if((Surf_Temp = IMG_Load(File.c_str())) == NULL)
     {
         return NULL;
     }

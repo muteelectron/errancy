@@ -50,6 +50,7 @@ int Program::init()
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-Log::write("Program::init finish");
+    glClearColor(0, 0, 0, 1);
+    Log::write("Program::init finish");
     return true;
 }

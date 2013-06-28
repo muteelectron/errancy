@@ -21,8 +21,8 @@ Graphics::Graphics(std::string file_name)
     
     std::ifstream input(file_name.c_str());
 
-    char* graphics_type_init;
-    char* graphics_file_name;
+    std::string graphics_type_init;
+    std::string graphics_file_name;
     input >> graphics_type_init;
     input >> graphics_file_name;
 

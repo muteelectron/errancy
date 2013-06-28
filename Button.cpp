@@ -11,16 +11,14 @@ Button::Button(std::string file_name, boost::function<void()> action_init)
 
     action = action_init;
 
-    char* transparency_map_file_name;
+    std::string transparency_map_file_name;
     std::string image_file_name;
     std::string image_hovered_file_name;
-    std::string image_pressed_file_name;
 
     std::ifstream input(file_name.c_str());
     input >> transparency_map_file_name;
     input >> image_file_name;
     input >> image_hovered_file_name;
-    input >> image_pressed_file_name;
 
     transparency_map = Surface::OnLoad(transparency_map_file_name);
     image = new Graphics(image_file_name);

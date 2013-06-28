@@ -68,6 +68,13 @@ void MainMenu::render()
     while(running)
     {
         running_mtx.unlock();
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        poker_run_but->render();
+
+        SDL_GL_SwapBuffers();
+
         running_mtx.lock();
     }
     Log::write("MainMenu::render finish");
