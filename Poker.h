@@ -2,14 +2,14 @@
 #define POKER_H
 
 #include "ProgramState.h"
-#include "PokerPlayer.h"
+#include "PokerUser.h"
 #include "PokerBot.h"
 #include "Pack.h"
 #include "Graphics.h"
 #include "Card.h"
 #include <boost/thread.hpp>
 #include <fstream>
-#include <stream>
+#include <string>
 #include "Log.h"
 
 class Poker : public ProgramState
