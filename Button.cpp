@@ -2,6 +2,11 @@
 
 Button::Button(std::string file_name, boost::function<void()> action_init)
 {
+    if(std::ifstream(file_name.c_str()) == NULL)
+    {
+        Log::write("ERROR: " + file_name + " doesn't exist");
+    }
+    
     state = NORMAL;
 
     action = action_init;

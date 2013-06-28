@@ -14,6 +14,11 @@
 
 Graphics::Graphics(std::string file_name)
 {
+    if(std::ifstream(file_name.c_str()) == NULL)
+    {
+        Log::write("ERROR: " + file_name + " doesn't exist");
+    }
+    
     std::ifstream input(file_name.c_str());
 
     char* graphics_type_init;

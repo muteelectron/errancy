@@ -21,6 +21,7 @@
 #include <cmath>
 #include <fstream>
 #include <string>
+#include "Log.h"
 
 
 enum GraphicsType{STATIC, ANIMATED};

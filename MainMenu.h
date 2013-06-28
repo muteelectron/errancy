@@ -37,7 +37,7 @@ private:
 
     void poker_run();
 
-    Button poker_run_but;
+    Button* poker_run_but;
 };
 
 #endif

@@ -7,6 +7,7 @@
 #include <cmath>
 #include <boost/bind.hpp>
 #include <boost/function.hpp>
+#include "Log.h"
 
 enum ButtonState{NORMAL, HOVERED, PRESSED};
 
