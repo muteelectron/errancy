@@ -259,9 +259,9 @@ void Graphics::set_frame_interval_ms(unsigned int frame_interval_ms_init)
 }
 
 
-void Graphics::load_image(char* file_name)
+void Graphics::load_image(std::string file_name)
 {
-    SDL_Surface* image = IMG_Load(file_name);
+    SDL_Surface* image = IMG_Load(file_name.c_str());
     if (image == NULL)
     {
         // ERROR

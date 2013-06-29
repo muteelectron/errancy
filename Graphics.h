@@ -58,7 +58,7 @@ public:
 
 private:
 
-    void load_image(char* file_name);
+    void load_image(std::string file_name);
 
     GraphicsType graphics_type;
     GLuint texture;
