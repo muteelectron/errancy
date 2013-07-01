@@ -2,6 +2,10 @@
 
 PokerPlayer::PokerPlayer()
 {
+    name = "Unknown";
+    
+    cash = 0;
+
     hand = new Card*[2];
     hand[0] = NULL;
     hand[1] = NULL;
@@ -20,7 +24,7 @@ void PokerPlayer::render()
  }
 
 
-int PokerPlayer::blind(int value)
+int PokerPlayer::give_cash(int value)
 {
     if(value >= cash)
     {
@@ -35,6 +39,12 @@ int PokerPlayer::blind(int value)
         cash -= value;
         return value;
     }
+}
+
+
+void PokerPlayer::pick_cash(int value)
+{
+    cash += value;
 }
 
 
@@ -58,4 +68,16 @@ void PokerPlayer::pick_card(Card* card)
 Card** PokerPlayer::fold()
 {
     return hand;
+}
+
+
+void PokerPlayer::set_name(std::string name_init)
+{
+    name = name_init;
+}
+
+
+std::string PokerPlayer::get_name()
+{
+    return name;
 }

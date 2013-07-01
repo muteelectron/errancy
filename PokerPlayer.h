@@ -15,10 +15,15 @@ public:
     void render();
 
     virtual int stake(int min_stake) = 0;
-    int blind(int value);
+
+    int give_cash(int value);
+    void pick_cash(int value);
 
     void pick_card(Card* card);
     Card** fold();
+
+    void set_name(std::string name_init);
+    std::string get_name();
 
 private:
 

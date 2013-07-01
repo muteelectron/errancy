@@ -124,9 +124,9 @@ void Poker::poker_round()
 
     // BLINDS
     cur_player = closer_seat(button + 1);
-    seat[cur_player]->blind(small_blind);
+    seat[cur_player]->give_money(small_blind);
     cur_player = closer_seat(cur_player + 1);
-    seat[cur_player]->blind(big_blind);
+    seat[cur_player]->give_money(big_blind);
 // УТОЧНИТЬ: ОСТАЛЬНЫЕ ПОВЫШАЮТ ДО БОЛЬШОГО БЛАИНДА ИЛИ ОЛ-ИНА ИГРОКА С БОЛЬШИМ БЛАИНДОМ
     highest_stake = big_blind;
     highest_stake_player = cur_player;
@@ -299,10 +299,12 @@ void Poker::load_template_game()
     seat = new PokerPlayer*[num_of_players];
 
     seat[user_seat] = new PokerUser();
+    seat[user_seat]->pick_cash(10000);
 
     for(int i = 1; i < num_of_players; ++i)
     {
         seat[i] = new PokerBot();
+        seat[i]->pick_cash(10000);
     }
 
     pack = new Pack("card_back.graphics");
