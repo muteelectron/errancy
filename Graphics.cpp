@@ -36,7 +36,7 @@ Graphics::Graphics(std::string file_name)
     input >> height_coef;
     height = width * height_coef;
 
-    semi_diagonal = sqrt(pow(width, 2) + pow(height, 2));
+    semi_diagonal = sqrt(pow(width / 2, 2) + pow(height / 2, 2));
 
     // height_coef == tan(PI - angle)
 
@@ -73,8 +73,8 @@ void Graphics::render()
 
     glRotatef(360 - angle_ccw_rad * 180 / M_PI, 0, 0, 1);
 
-    int top_left_corner_x;
-    int top_left_corner_y;
+    double top_left_corner_x;
+    double top_left_corner_y;
     top_left_corner_x = center_x + semi_diagonal * cos(angle_ccw_rad + angle_ccw_rad_default);
     top_left_corner_y = center_y + semi_diagonal * sin(angle_ccw_rad + angle_ccw_rad_default);
 
@@ -101,19 +101,19 @@ void Graphics::render()
     glBegin(GL_QUADS);
 
         // Bottom-Left
-        glTexCoord2d((double)cur_frame / num_of_frames, 0);
+        glTexCoord2d((double)cur_frame / num_of_frames, 1);
         glVertex2f(top_left_corner_x, top_left_corner_y - height);
 
         // Bottom-Right
-        glTexCoord2d((double)(cur_frame + 1) / num_of_frames, 0);
+        glTexCoord2d((double)(cur_frame + 1) / num_of_frames, 1);
         glVertex2f(top_left_corner_x + width, top_left_corner_y - height);
 
         // Top-Right
-        glTexCoord2d((double)(cur_frame + 1) / num_of_frames, 1);
+        glTexCoord2d((double)(cur_frame + 1) / num_of_frames, 0);
         glVertex2f(top_left_corner_x + width, top_left_corner_y);
 
         // Top-Left
-        glTexCoord2d((double)cur_frame / num_of_frames, 1);
+        glTexCoord2d((double)cur_frame / num_of_frames, 0);
         glVertex2f(top_left_corner_x, top_left_corner_y);
 
     glEnd();
