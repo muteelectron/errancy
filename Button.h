@@ -18,7 +18,7 @@ public:
     Button(std::string file_name, boost::function<void()> action_init);
     ~Button();
 
-    bool mouse_event(int click_x, int click_y, bool clicked);
+    bool mouse_event(double click_x, double click_y, bool clicked);
 
     void render();
 

@@ -33,18 +33,20 @@ Button::~Button()
 }
 
 
-bool Button::mouse_event(int click_x, int click_y, bool clicked)
+bool Button::mouse_event(double click_x, double click_y, bool clicked)
 {
     click_x -= image->get_center_x();
     click_y -= image->get_center_y();
 
-    if(abs(click_x) <= image->get_width() && abs(click_y) <= image->get_height())
+    if(abs(click_x) <= image->get_width() / 2 && abs(click_y) <= image->get_height() / 2)
     {
+        click_x += image->get_width()  / 2;
+        click_y += image->get_height() / 2;
         Uint32 pixel;
         int x;
         int y;
-        x = click_x * SDL_GetVideoSurface()->w;
-        y = click_y * SDL_GetVideoSurface()->h;
+        x = click_x / image->get_width()  * transparency_map->w;
+        y = click_y / image->get_height() * transparency_map->h;
 
         pixel =  *(Uint32*)((Uint8*)transparency_map->pixels +
                    transparency_map->format->BytesPerPixel * x + transparency_map->pitch * y);
