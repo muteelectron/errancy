@@ -49,12 +49,15 @@ bool MainMenu::run()
 void MainMenu::update()
 {
     Log::write("MainMenu::update start");
+    
     running_mtx.lock();
     while(running)
     {
         running_mtx.unlock();
         running_mtx.lock();
     }
+    running_mtx.unlock();    
+
     Log::write("MainMenu::update finish");
 }
 
@@ -62,6 +65,7 @@ void MainMenu::update()
 void MainMenu::render()
 {
     Log::write("MainMenu::render start");
+
     running_mtx.lock();
     while(running)
     {
@@ -75,6 +79,8 @@ void MainMenu::render()
 
         running_mtx.lock();
     }
+    running_mtx.unlock();
+
     Log::write("MainMenu::render finish");
 }
 
@@ -93,6 +99,7 @@ void MainMenu::event()
         Event::OnEvent(&event);
         running_mtx.lock();
     }
+    running_mtx.unlock();
 
     Log::write("MainMenu::event finish");
 }
