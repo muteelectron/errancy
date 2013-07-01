@@ -12,7 +12,6 @@ bool MainMenu::run()
     running = true;
 
     boost::thread* update_thread;
-    boost::thread* render_thread;
     boost::thread* event_thread;
 
     while(true)
@@ -20,15 +19,14 @@ bool MainMenu::run()
         next_state = NULL;
 
         update_thread = new boost::thread(&MainMenu::update, this);
-        render_thread = new boost::thread(&MainMenu::render, this);
          event_thread = new boost::thread(&MainMenu::event, this);
 
+        render();
+
         update_thread->join();
-        render_thread->join();
          event_thread->join();
 
         delete update_thread;
-        delete render_thread;
         delete  event_thread;
 
         if(next_state != NULL)
