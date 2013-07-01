@@ -32,7 +32,7 @@ Graphics::Graphics(std::string file_name)
     input >> center_y;
     input >> width;
 
-    int height_coef;
+    double height_coef;
     input >> height_coef;
     height = width * height_coef;
 
@@ -122,25 +122,25 @@ void Graphics::render()
 }
 
 
-int Graphics::get_center_x()
+double Graphics::get_center_x()
 {
     return center_x;
 }
 
 
-int Graphics::get_center_y()
+double Graphics::get_center_y()
 {
     return center_y;
 }
 
 
-int Graphics::get_width()
+double Graphics::get_width()
 {
     return width;
 }
 
 
-int Graphics::get_height()
+double Graphics::get_height()
 {
     return height;
 }
@@ -182,25 +182,25 @@ unsigned int Graphics::get_frame_interval_ms()
 }
 
 
-void Graphics::set_center_x(int center_x_init)
+void Graphics::set_center_x(double center_x_init)
 {
     center_x = center_x_init;
 }
 
 
-void Graphics::set_center_y(int center_y_init)
+void Graphics::set_center_y(double center_y_init)
 {
     center_y = center_y_init;
 }
 
 
-void Graphics::set_width(int width_init)
+void Graphics::set_width(double width_init)
 {
     width = width_init;
 }
 
 
-void Graphics::set_height(int height_init)
+void Graphics::set_height(double height_init)
 {
     height = height_init;
 }

@@ -39,18 +39,18 @@ public:
     virtual void render();
 
 
-    virtual int get_center_x();
-    virtual int get_center_y();
-    virtual int get_width();
-    virtual int get_height();
+    virtual double get_center_x();
+    virtual double get_center_y();
+    virtual double get_width();
+    virtual double get_height();
     virtual double get_angle(AngleDirection angle_direction, AngleType angle_type);
     virtual int get_fps();
     virtual unsigned int get_frame_interval_ms();
 
-    virtual void set_center_x(int center_x_init);
-    virtual void set_center_y(int center_y_init);
-    virtual void set_width(int width_init);
-    virtual void set_height(int height_init);
+    virtual void set_center_x(double center_x_init);
+    virtual void set_center_y(double center_y_init);
+    virtual void set_width(double width_init);
+    virtual void set_height(double height_init);
     virtual void set_angle(double angle_init, AngleDirection angle_direction, AngleType angle_type);
     virtual void set_fps(int fps_init);
     virtual void set_frame_interval_ms(unsigned int frame_interval_ms_init);
@@ -63,10 +63,10 @@ private:
     GraphicsType graphics_type;
     GLuint texture;
 
-    int center_x;
-    int center_y;
-    int width;
-    int height;
+    double center_x;
+    double center_y;
+    double width;
+    double height;
     double angle_ccw_rad;
     double angle_ccw_rad_default;
     double semi_diagonal;
