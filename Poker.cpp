@@ -27,11 +27,11 @@ bool Poker::run()
 
     running = true;
 
-    boost::thread render_thread(&Poker::render, this);
     boost::thread game_loop_thread(&Poker::game_loop, this);
     boost::thread event_thread(&Poker::event, this);
 
-    render_thread.join();
+    render();
+
     game_loop_thread.join();
     event_thread.join();
 
@@ -84,6 +84,7 @@ void Poker::render()
 
         running_mtx.lock();
     }
+    running_mtx.unlock();
 
     Log::write("Poker::render finish");
 }
@@ -104,6 +105,7 @@ void Poker::game_loop()
 
         running_mtx.lock();
     }
+    running_mtx.unlock();
 }
 
 
@@ -221,15 +223,21 @@ void Poker::trade_round()
 void Poker::event()
 {
     Log::write("Poker::event start");
+
     SDL_Event event;
+
     running_mtx.lock();
     while(running)
     {
         running_mtx.unlock();
+
         SDL_PollEvent(&event);
         Event::OnEvent(&event);
+        
         running_mtx.lock();
     }
+    running_mtx.unlock();
+
     Log::write("Poker::event finish");
 }
 

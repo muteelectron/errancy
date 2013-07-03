@@ -18,7 +18,6 @@ public:
 private:
 
     bool running;
-    boost::mutex running_mtx;
 
     ProgramState* next_state;
 
@@ -37,7 +36,10 @@ private:
 
     void poker_run();
 
-    Button* poker_run_but;
+    Button* poker_new_game_but;
+
+    boost::mutex running_mtx;
+    boost::mutex new_game_but_mtx;
 };
 
 #endif

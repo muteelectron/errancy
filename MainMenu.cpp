@@ -7,7 +7,7 @@ bool MainMenu::run()
 
     boost::function<void()> but_action_init;
     but_action_init = boost::bind(&MainMenu::poker_run, this);
-    poker_run_but = new Button("poker_run.button", but_action_init);
+    poker_new_game_but = new Button("poker_run.button", but_action_init);
 
     running = true;
 
@@ -73,7 +73,9 @@ void MainMenu::render()
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        poker_run_but->render();
+        new_game_but_mtx->lock();
+        poker_new_game_but->render();
+        new_game_but_mtx->unlock();
 
         SDL_GL_SwapBuffers();
 
@@ -95,8 +97,10 @@ void MainMenu::event()
     while(running)
     {
         running_mtx.unlock();
+
         SDL_PollEvent(&event);
         Event::OnEvent(&event);
+
         running_mtx.lock();
     }
     running_mtx.unlock();
@@ -107,13 +111,17 @@ void MainMenu::event()
 
 void MainMenu::OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bool Right, bool Middle)
 {
-
+    new_game_but_mtx->lock();
+    new_game_but_mtx->mouse_event(mX, mY, false);
+    new_game_but_mtx->unlock();
 }
 
 
 void MainMenu::OnLButtonDown(int mX, int mY)
 {
-
+    new_game_but_mtx->lock();
+    new_game_but_mtx->mouse_event(mX, mY, true);
+    new_game_but_mtx->unlock();
 }
 
 
