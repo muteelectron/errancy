@@ -126,9 +126,9 @@ void Poker::poker_round()
 
     // BLINDS
     cur_player = closer_seat(button + 1);
-    seat[cur_player]->give_money(small_blind);
+    seat[cur_player]->give_cash(small_blind);
     cur_player = closer_seat(cur_player + 1);
-    seat[cur_player]->give_money(big_blind);
+    seat[cur_player]->give_cash(big_blind);
 // УТОЧНИТЬ: ОСТАЛЬНЫЕ ПОВЫШАЮТ ДО БОЛЬШОГО БЛАИНДА ИЛИ ОЛ-ИНА ИГРОКА С БОЛЬШИМ БЛАИНДОМ
     highest_stake = big_blind;
     highest_stake_player = cur_player;
@@ -233,7 +233,7 @@ void Poker::event()
 
         SDL_PollEvent(&event);
         Event::OnEvent(&event);
-        
+
         running_mtx.lock();
     }
     running_mtx.unlock();

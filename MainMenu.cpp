@@ -73,9 +73,9 @@ void MainMenu::render()
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        new_game_but_mtx->lock();
+        new_game_but_mtx.lock();
         poker_new_game_but->render();
-        new_game_but_mtx->unlock();
+        new_game_but_mtx.unlock();
 
         SDL_GL_SwapBuffers();
 
@@ -111,17 +111,19 @@ void MainMenu::event()
 
 void MainMenu::OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bool Right, bool Middle)
 {
-    new_game_but_mtx->lock();
-    new_game_but_mtx->mouse_event(mX, mY, false);
-    new_game_but_mtx->unlock();
+    new_game_but_mtx.lock();
+    poker_new_game_but->mouse_event((double)mX / SDL_GetVideoSurface()->w, 
+                                    (double)mY / SDL_GetVideoSurface()->h, false);
+    new_game_but_mtx.unlock();
 }
 
 
 void MainMenu::OnLButtonDown(int mX, int mY)
 {
-    new_game_but_mtx->lock();
-    new_game_but_mtx->mouse_event(mX, mY, true);
-    new_game_but_mtx->unlock();
+    new_game_but_mtx.lock();
+    poker_new_game_but->mouse_event((double)mX / SDL_GetVideoSurface()->w, 
+                                    (double)mY / SDL_GetVideoSurface()->h, true);
+    new_game_but_mtx.unlock();
 }
 
 
