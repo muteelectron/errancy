@@ -47,6 +47,8 @@ private:
     Pack* pack;
     Card** table_card;
 
+    Graphics* table;
+
     int small_blind;
     int big_blind;
 

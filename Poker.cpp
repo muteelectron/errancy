@@ -75,6 +75,7 @@ void Poker::render()
                 seat[i]->render();
             }
         }
+
         int i;
         i = 0;
         while(table_card[i] != NULL && i < 5)
@@ -306,12 +307,12 @@ void Poker::load_template_game()
 
     seat = new PokerPlayer*[num_of_players];
 
-    seat[user_seat] = new PokerUser();
+    seat[user_seat] = new PokerUser("player.graphics");
     seat[user_seat]->pick_cash(10000);
 
     for(int i = 1; i < num_of_players; ++i)
     {
-        seat[i] = new PokerBot();
+        seat[i] = new PokerBot("player.graphics");
         seat[i]->pick_cash(10000);
     }
 
@@ -352,6 +353,8 @@ void Poker::load_template_game()
         pack->push_bot(card_temp);
     }
     pack->shuffle();
+
+    table = new Graphics("table.graphics");
 
     table_card = new Card*[5];
     small_blind = 2;

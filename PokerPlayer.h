@@ -4,15 +4,14 @@
 #include "Card.h"
 #include <string>
 #include "Log.h"
+#include "Graphics.h"
 
-class PokerPlayer
+class PokerPlayer : public Graphics
 {
 public:
 
-    PokerPlayer();
+    PokerPlayer(std::string file_name);
     ~PokerPlayer();
-
-    void render();
 
     virtual int stake(int min_stake) = 0;
 

@@ -7,7 +7,7 @@ class PokerBot : public PokerPlayer
 {
 public:
 
-    PokerBot();
+    PokerBot(std::string file_name);
     ~PokerBot();
 
     int stake(int min_stake);

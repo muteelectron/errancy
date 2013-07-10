@@ -1,6 +1,7 @@
 #include "PokerPlayer.h"
 
-PokerPlayer::PokerPlayer()
+PokerPlayer::PokerPlayer(std::string file_name)
+: Graphics(file_name)
 {
     name = "Unknown";
     
@@ -16,12 +17,6 @@ PokerPlayer::~PokerPlayer()
 {
     delete[] hand;
 }
-
-
-void PokerPlayer::render()
- {
-
- }
 
 
 int PokerPlayer::give_cash(int value)

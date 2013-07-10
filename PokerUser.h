@@ -7,6 +7,8 @@ class PokerUser : public PokerPlayer
 {
 public:
 
+    PokerUser(std::string file_name);
+
     int stake(int min_stake);
 
 private:
