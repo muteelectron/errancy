@@ -7,7 +7,6 @@
 // center's x coordinat
 // center's y coordinat
 // width(in 0-1 interval)
-// height/width ratio
 // number of frames(only if graphics is animated)
 // frames per second(only if graphics is animated)
 
@@ -26,15 +25,11 @@ Graphics::Graphics(std::string file_name)
     input >> graphics_type_init;
     input >> graphics_file_name;
 
-    load_image(graphics_file_name);
-
     input >> center_x;
     input >> center_y;
     input >> width;
 
-    double height_coef;
-    input >> height_coef;
-    height = width * height_coef;
+    load_image(graphics_file_name);
 
     semi_diagonal = sqrt(pow(width / 2, 2) + pow(height / 2, 2));
 
@@ -266,6 +261,8 @@ void Graphics::load_image(std::string file_name)
     {
         // ERROR
     }
+
+    height = width * image->h / image->w;
 
     GLint nofcolors;
     nofcolors=image->format->BytesPerPixel;
