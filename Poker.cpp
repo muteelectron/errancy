@@ -322,34 +322,40 @@ void Poker::load_template_game()
     Graphics* card_back;
     Graphics* card_front;
     card_front = new Graphics("card_back.graphics");
+
     string file_name_temp;
-    file_name_temp = "X00";
-    file_name_temp += ".graphics";
-    for(int i = 2; i <= 14; ++i)
+    CardSuit cur_suit;
+    int card_value;
+
+    file_name_temp = "graphics/cards/X00.graphics";
+    for(int i = 0; i < 52; ++i)
     {
-        file_name_temp[0] = 'C';
-        file_name_temp[1] = i / 10 + 48;
-        file_name_temp[2] = i % 10 + 48;
+        switch(i / 13)
+        {
+            case 0:
+                file_name_temp[0] = 'C';
+                cur_suit = CLUBS;
+                break;
+            case 1:
+                file_name_temp[0] = 'D';
+                cur_suit = DIAMONDS;
+                break;
+            case 2:
+                file_name_temp[0] = 'H';
+                cur_suit = HEARTS;
+                break;
+            case 3:
+                file_name_temp[0] = 'S';
+                cur_suit = SPADES;
+                break;
+        }
+
+        card_value = (i % 13) + 2;
+
+        file_name_temp[1] = card_value / 10 + 48;
+        file_name_temp[2] = card_value % 10 + 48;
         card_front = new Graphics(file_name_temp);
-        card_temp = new Card(CLUBS, i, card_front, card_back);
-        pack->push_bot(card_temp);
-        file_name_temp[0] = 'D';
-        file_name_temp[1] = i / 10 + 48;
-        file_name_temp[2] = i % 10 + 48;
-        card_front = new Graphics(file_name_temp);
-        card_temp = new Card(DIAMONDS, i, card_front, card_back);
-        pack->push_bot(card_temp);
-        file_name_temp[0] = 'H';
-        file_name_temp[1] = i / 10 + 48;
-        file_name_temp[2] = i % 10 + 48;
-        card_front = new Graphics(file_name_temp);
-        card_temp = new Card(HEARTS, i, card_front, card_back);
-        pack->push_bot(card_temp);
-        file_name_temp[0] = 'S';
-        file_name_temp[1] = i / 10 + 48;
-        file_name_temp[2] = i % 10 + 48;
-        card_front = new Graphics(file_name_temp);
-        card_temp = new Card(SPADES, i, card_front, card_back);
+        card_temp = new Card(cur_suit, card_value, card_front, card_back);
         pack->push_bot(card_temp);
     }
     pack->shuffle();
