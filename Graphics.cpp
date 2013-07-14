@@ -33,6 +33,9 @@ Graphics::Graphics(std::string file_name)
 
     semi_diagonal = sqrt(pow(width / 2, 2) + pow(height / 2, 2));
 
+    double height_coef;
+    height_coef = height / width;
+
     // height_coef == tan(PI - angle)
 
     angle_ccw_rad_default = M_PI - atan(height_coef);
