@@ -3,8 +3,6 @@
 
 #include "Graphics.h"
 
-// КОСТЫЛИ, УТЕЧКИ ПАМЯТИ И МНОГОЕ ДРУГОЕ
-
 enum CardSuit{CLUBS, DIAMONDS, HEARTS, SPADES};
 
 class Card

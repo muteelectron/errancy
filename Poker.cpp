@@ -323,11 +323,15 @@ void Poker::load_template_game()
     Graphics* card_front;
     card_front = new Graphics("card_back.graphics");
 
-    string file_name_temp;
+    std::string file_path;
+    std::string file_extension;
+    std::string file_name_temp;
     CardSuit cur_suit;
     int card_value;
 
-    file_name_temp = "graphics/cards/X00.graphics";
+    file_path      = "graphics/cards/";
+    file_extension = ".graphics";
+    file_name_temp = "X00";
     for(int i = 0; i < 52; ++i)
     {
         switch(i / 13)
@@ -354,7 +358,7 @@ void Poker::load_template_game()
 
         file_name_temp[1] = card_value / 10 + 48;
         file_name_temp[2] = card_value % 10 + 48;
-        card_front = new Graphics(file_name_temp);
+        card_front = new Graphics(file_path + file_name_temp + file_extension);
         card_temp = new Card(cur_suit, card_value, card_front, card_back);
         pack->push_bot(card_temp);
     }

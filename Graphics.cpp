@@ -262,7 +262,7 @@ void Graphics::load_image(std::string file_name)
     SDL_Surface* image = IMG_Load(file_name.c_str());
     if (image == NULL)
     {
-        // ERROR
+        Log::write("ERROR: " + file_name + " doesn't exist");
     }
 
     height = width * image->h / image->w;
