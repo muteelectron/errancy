@@ -68,12 +68,18 @@ void Poker::render()
     {
         running_mtx.unlock();
 
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
         for(int i = 0; i < num_of_seats; ++i)
         {
-            if(seat[i] != NULL)
-            {
-                seat[i]->render();
-            }
+            seat_mtx[i].lock();
+
+                if(seat[i] != NULL)
+                {
+                    seat[i]->render();
+                }
+
+            seat_mtx[i].unlock();
         }
 
         int i;
@@ -82,6 +88,8 @@ void Poker::render()
         {
             table_card[i]->render();
         }
+
+        SDL_GL_SwapBuffers();
 
         running_mtx.lock();
     }
@@ -118,10 +126,14 @@ void Poker::poker_round()
     {
         for(int j = 0; j < num_of_seats; ++j)
         {
-            if(seat[j] != NULL)
-            {
-                seat[j]->pick_card(pack->pop_top());
-            }
+            seat_mtx[j].lock();
+
+                if(seat[j] != NULL)
+                {
+                    seat[j]->pick_card(pack->pop_top());
+                }
+
+            seat_mtx[j].unlock();
         }
     }
 
@@ -129,8 +141,13 @@ void Poker::poker_round()
     cur_player = closer_seat(button + 1);
     seat[cur_player]->give_cash(small_blind);
     cur_player = closer_seat(cur_player + 1);
-    seat[cur_player]->give_cash(big_blind);
-// УТОЧНИТЬ: ОСТАЛЬНЫЕ ПОВЫШАЮТ ДО БОЛЬШОГО БЛАИНДА ИЛИ ОЛ-ИНА ИГРОКА С БОЛЬШИМ БЛАИНДОМ
+
+    seat_mtx[cur_player].lock();
+        seat[cur_player]->give_cash(big_blind);
+    seat_mtx[cur_player].unlock();
+
+// УТОЧНИТЬ: ОСТАЛЬНЫЕ ПОВЫШАЮТ ДО БОЛЬШОГО БЛАИНДА 
+//           ИЛИ ОЛ-ИНА ИГРОКА С БОЛЬШИМ БЛАИНДОМ
     highest_stake = big_blind;
     highest_stake_player = cur_player;
     cur_player = closer_seat(cur_player + 1);
@@ -306,6 +323,7 @@ void Poker::load_template_game()
     user_seat = 0;
 
     seat = new PokerPlayer*[num_of_players];
+    seat_mtx = new boost::mutex[num_of_seats];
 
     seat[user_seat] = new PokerUser("player.graphics");
     seat[user_seat]->pick_cash(10000);

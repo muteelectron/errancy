@@ -27,6 +27,8 @@ private:
     bool running;
     boost::mutex running_mtx;
 
+    boost::mutex* seat_mtx;
+
     void render();
     void game_loop();
     void event();
