@@ -82,11 +82,26 @@ void Poker::render()
             seat_mtx[i].unlock();
         }
 
-        int i;
-        i = 0;
-        while(table_card[i] != NULL && i < 5)
+        table_mtx.lock();
+            table->render();
+        table_mtx.unlock();
+
+        pack_mtx.lock();
+            pack->render();
+        pack_mtx.unlock();
+
+        for(int i = 0; i < 5; ++i)
         {
-            table_card[i]->render();
+            table_card_mtx[i].lock();
+                if(table_card[i] == NULL)
+                {
+                    break;
+                }
+                else
+                {
+                    table_card[i]->render();
+                }
+            table_card_mtx[i].unlock();
         }
 
         SDL_GL_SwapBuffers();
@@ -139,7 +154,11 @@ void Poker::poker_round()
 
     // BLINDS
     cur_player = closer_seat(button + 1);
-    seat[cur_player]->give_cash(small_blind);
+
+    seat_mtx[cur_player].lock();
+        seat[cur_player]->give_cash(small_blind);
+    seat_mtx[cur_player].unlock();
+
     cur_player = closer_seat(cur_player + 1);
 
     seat_mtx[cur_player].lock();
@@ -160,9 +179,19 @@ void Poker::poker_round()
     }
 
     // FLOP
-    table_card[0] = pack->pop_top();
-    table_card[1] = pack->pop_top();
-    table_card[2] = pack->pop_top();
+    pack_mtx.lock();
+        table_card_mtx[0].lock();
+            table_card[0] = pack->pop_top();
+        table_card_mtx[0].unlock();
+
+        table_card_mtx[1].lock();
+            table_card[1] = pack->pop_top();
+        table_card_mtx[1].unlock();
+
+        table_card_mtx[2].lock();
+            table_card[2] = pack->pop_top();
+        table_card_mtx[2].unlock();
+    pack_mtx.unlock();
 
     cur_player = closer_seat(closer_seat(closer_seat(button + 1)
                  + 1) + 1);
@@ -172,7 +201,11 @@ void Poker::poker_round()
     trade_round();
 
     // TURN
+    pack_mtx.lock();
+    table_card_mtx[3].lock();
     table_card[3] = pack->pop_top();
+    table_card_mtx[3].unlock();
+    pack_mtx.unlock();
 
     cur_player = closer_seat(closer_seat(closer_seat(closer_seat
                  (button + 1) + 1) + 1) + 1);
@@ -182,7 +215,11 @@ void Poker::poker_round()
     trade_round();
 
     // RIVER
-    table_card[4] = pack->pop_top();
+    pack_mtx.lock();
+    table_card_mtx[4].lock();
+        table_card[4] = pack->pop_top();
+    pack_mtx.unlock();
+    table_card_mtx[4].unlock();
 
     cur_player = closer_seat(closer_seat(closer_seat(closer_seat
                  (closer_seat(button + 1) + 1) + 1) + 1) + 1);
@@ -229,7 +266,11 @@ void Poker::trade_round()
         {
             // FOLD
             Card** folded_card;
-            folded_card = seat[cur_player]->fold();
+
+            seat_mtx[cur_player].lock();
+                folded_card = seat[cur_player]->fold();
+            seat_mtx[cur_player].unlock();
+
             pack->push_bot(folded_card[0]);
             pack->push_bot(folded_card[1]);
         }
@@ -269,6 +310,7 @@ void Poker::save_game(char* save_file_name)
 void Poker::load_game(char* load_file_name)
 {
     // UNDONE
+
     ifstream load_file(load_file_name);
 
     if()
@@ -385,6 +427,7 @@ void Poker::load_template_game()
     table = new Graphics("table.graphics");
 
     table_card = new Card*[5];
+    table_card_mtx = new boost::mutex[5];
     small_blind = 2;
     big_blind = 4;
     button = 0;

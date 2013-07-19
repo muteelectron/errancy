@@ -29,6 +29,10 @@ private:
 
     boost::mutex* seat_mtx;
 
+    boost::mutex table_mtx;
+    boost::mutex pack_mtx;
+    boost::mutex* table_card_mtx;
+
     void render();
     void game_loop();
     void event();
