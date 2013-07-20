@@ -218,8 +218,8 @@ void Poker::poker_round()
     pack_mtx.lock();
     table_card_mtx[4].lock();
         table_card[4] = pack->pop_top();
-    pack_mtx.unlock();
     table_card_mtx[4].unlock();
+    pack_mtx.unlock();
 
     cur_player = closer_seat(closer_seat(closer_seat(closer_seat
                  (closer_seat(button + 1) + 1) + 1) + 1) + 1);
@@ -236,7 +236,10 @@ void Poker::trade_round()
 
     do
     {
-        stake = seat[cur_player]->stake(highest_stake);
+        seat_mtx[cur_player].lock();
+            stake = seat[cur_player]->stake(highest_stake);
+        seat_mtx[cur_player].unlock();
+
         bank += stake;
         if(stake == 0)
         {
@@ -271,8 +274,10 @@ void Poker::trade_round()
                 folded_card = seat[cur_player]->fold();
             seat_mtx[cur_player].unlock();
 
-            pack->push_bot(folded_card[0]);
-            pack->push_bot(folded_card[1]);
+            pack_mtx.lock();
+                pack->push_bot(folded_card[0]);
+                pack->push_bot(folded_card[1]);
+            pack_mtx.unlock();
         }
         cur_player = closer_seat(cur_player + 1);
     }while(cur_player != highest_stake_player);
@@ -367,21 +372,21 @@ void Poker::load_template_game()
     seat = new PokerPlayer*[num_of_players];
     seat_mtx = new boost::mutex[num_of_seats];
 
-    seat[user_seat] = new PokerUser("player.graphics");
+    seat[user_seat] = new PokerUser("graphics/player.graphics");
     seat[user_seat]->pick_cash(10000);
 
     for(int i = 1; i < num_of_players; ++i)
     {
-        seat[i] = new PokerBot("player.graphics");
+        seat[i] = new PokerBot("graphics/player.graphics");
         seat[i]->pick_cash(10000);
     }
 
-    pack = new Pack("card_back.graphics");
+    pack = new Pack("graphics/cards/card_back.graphics");
 
     Card* card_temp;
     Graphics* card_back;
     Graphics* card_front;
-    card_front = new Graphics("card_back.graphics");
+    card_front = new Graphics("graphics/cards/card_back.graphics");
 
     std::string file_path;
     std::string file_extension;
@@ -424,7 +429,7 @@ void Poker::load_template_game()
     }
     pack->shuffle();
 
-    table = new Graphics("table.graphics");
+    table = new Graphics("graphics/table.graphics");
 
     table_card = new Card*[5];
     table_card_mtx = new boost::mutex[5];
