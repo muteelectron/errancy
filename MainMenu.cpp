@@ -7,7 +7,7 @@ bool MainMenu::run()
 
     boost::function<void()> but_action_init;
     but_action_init = boost::bind(&MainMenu::poker_run, this);
-    poker_new_game_but = new Button("poker_run.button", but_action_init);
+    poker_new_game_but = new Button("buttons/poker_run.button", but_action_init);
 
     running = true;
 
