@@ -72,6 +72,8 @@ void Poker::render()
 
         for(int i = 0; i < num_of_seats; ++i)
         {
+            chair[i]->render();
+            
             seat_mtx[i].lock();
 
                 if(seat[i] != NULL)
@@ -430,6 +432,12 @@ void Poker::load_template_game()
     pack->shuffle();
 
     table = new Graphics("graphics/table.graphics");
+
+    chair = new Graphics*[num_of_seats];
+    for(int i = 0; i < num_of_seats; ++i)
+    {
+        chair[i] = new Graphics("graphics/chair.graphics");
+    }
 
     table_card = new Card*[5];
     table_card_mtx = new boost::mutex[5];

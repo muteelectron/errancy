@@ -54,6 +54,7 @@ private:
     Card** table_card;
 
     Graphics* table;
+    Graphics** chair;
 
     int small_blind;
     int big_blind;
