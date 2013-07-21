@@ -265,15 +265,15 @@ void Graphics::load_image(std::string file_name)
         Log::write("ERROR: " + file_name + " doesn't exist");
     }
 
-    height = width * image->h / image->w;
+    height = width * SDL_GetVideoSurface()->w * image->h / image->w / SDL_GetVideoSurface()->h;
 
     GLint nofcolors;
-    nofcolors=image->format->BytesPerPixel;
+    nofcolors = image->format->BytesPerPixel;
     GLenum texture_format;
 
-    if(nofcolors==4)
+    if(nofcolors == 4)
     {
-        if(image->format->Rmask==0x000000ff)
+        if(image->format->Rmask == 0x000000ff)
         {
             texture_format = GL_RGBA;
         }

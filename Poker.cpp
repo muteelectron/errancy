@@ -167,7 +167,7 @@ void Poker::poker_round()
         seat[cur_player]->give_cash(big_blind);
     seat_mtx[cur_player].unlock();
 
-// УТОЧНИТЬ: ОСТАЛЬНЫЕ ПОВЫШАЮТ ДО БОЛЬШОГО БЛАИНДА 
+// УТОЧНИТЬ: ОСТАЛЬНЫЕ ПОВЫШАЮТ ДО БОЛЬШОГО БЛАИНДА
 //           ИЛИ ОЛ-ИНА ИГРОКА С БОЛЬШИМ БЛАИНДОМ
     highest_stake = big_blind;
     highest_stake_player = cur_player;
